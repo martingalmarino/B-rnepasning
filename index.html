@@ -125,29 +125,6 @@
             </div>
         </section>
 
-        <!-- Municipality Prices Table Section -->
-        <section class="prices-section">
-            <div class="container">
-                <h2 class="section-title">Priser pr. kommune</h2>
-                <div class="table-container">
-                    <table class="prices-table">
-                        <thead>
-                            <tr>
-                                <th>Kommune</th>
-                                <th>Vuggestue</th>
-                                <th>Børnehave</th>
-                                <th>SFO</th>
-                                <th>Kilde</th>
-                            </tr>
-                        </thead>
-                        <tbody id="priceTableBody">
-                            <!-- Table will be populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
         <!-- Tilskud & Support SEO Section -->
         <section class="tilskud-section container">
             <h2>Tilskud og økonomisk støtte til børnepasning</h2>
@@ -157,7 +134,7 @@
         </section>
 
         <!-- Municipality Price Table Section -->
-        <section id="prices" class="prices">
+        <section id="prices" class="prices-section">
             <div class="container">
                 <h2 class="section-title">Priser pr. kommune</h2>
                 <div class="table-container">
@@ -171,7 +148,7 @@
                                 <th>Detaljer</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="priceTableBody">
                             <!-- Table rows will be populated dynamically from JSON data -->
                         </tbody>
                     </table>
