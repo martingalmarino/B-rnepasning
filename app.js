@@ -58,6 +58,7 @@ function loadMunicipalityData() {
         // Initialize UI components after data is loaded
         initializeCalculator();
         initializePriceTable();
+        initializeMunicipalityPills();
         
     } catch (error) {
         console.error('Error loading municipality data:', error);
@@ -69,6 +70,7 @@ function loadMunicipalityData() {
         
         initializeCalculator();
         initializePriceTable();
+        initializeMunicipalityPills();
     }
 }
 
@@ -224,6 +226,37 @@ function initializePriceTable() {
     });
     
     console.log('Price table initialized with', municipalitiesToShow.length, 'municipalities');
+}
+
+// Initialize municipality pills
+function initializeMunicipalityPills() {
+    const pillsContainer = document.getElementById('municipality-pills');
+    if (!pillsContainer) return;
+    
+    // Clear existing pills
+    pillsContainer.innerHTML = '';
+    
+    // Create pills for all municipalities
+    municipalityData.forEach(municipality => {
+        const pill = document.createElement('a');
+        pill.href = `/kommuner/${createMunicipalitySlug(municipality.kommune)}`;
+        pill.className = 'municipality-pill';
+        
+        // Calculate average price for display
+        const averagePrice = Math.round((municipality.vuggestue + municipality.boernehave + municipality.sfo) / 3);
+        
+        pill.innerHTML = `
+            <div class="pill-content">
+                <div class="pill-name">${municipality.kommune}</div>
+                <div class="pill-price">Fra ${formatPrice(averagePrice)} DKK/måned</div>
+                <div class="pill-arrow">→</div>
+            </div>
+        `;
+        
+        pillsContainer.appendChild(pill);
+    });
+    
+    console.log('Municipality pills initialized with', municipalityData.length, 'municipalities');
 }
 
 // Initialize FAQ accordion functionality
