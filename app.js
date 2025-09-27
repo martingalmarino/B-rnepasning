@@ -230,6 +230,8 @@ function loadMunicipalityData() {
         initializePriceTable();
         initializeMunicipalityPills();
         
+        console.log('Data loading completed, municipalityData length:', municipalityData.length);
+        
     } catch (error) {
         console.error('Error loading municipality data:', error);
         
@@ -241,6 +243,8 @@ function loadMunicipalityData() {
         initializeCalculator();
         initializePriceTable();
         initializeMunicipalityPills();
+        
+        console.log('Fallback data loading completed, municipalityData length:', municipalityData.length);
     }
 }
 
@@ -274,8 +278,14 @@ function createMunicipalitySlug(municipalityName) {
 
 // Calculate price based on municipality data
 function calculatePrice() {
+    console.log('calculatePrice called');
+    console.log('municipalityData length:', municipalityData.length);
+    
     const form = document.getElementById('calculator-form');
-    if (!form) return;
+    if (!form) {
+        console.log('Form not found');
+        return;
+    }
     
     const formData = new FormData(form);
     const kommune = formData.get('kommune');
@@ -283,12 +293,16 @@ function calculatePrice() {
     const madordning = formData.get('madordning') === 'on';
     const husstandsindkomst = parseInt(formData.get('husstandsindkomst')) || 0;
     
+    console.log('Form data:', { kommune, alder, madordning, husstandsindkomst });
+    
     if (!kommune || !alder || husstandsindkomst <= 0) {
         alert('Udfyld venligst alle felter korrekt.');
         return;
     }
     
     const municipalityInfo = getMunicipalityData(kommune);
+    console.log('Municipality info:', municipalityInfo);
+    
     if (!municipalityInfo) {
         alert('Kommune ikke fundet.');
         return;
@@ -319,6 +333,9 @@ function calculatePrice() {
 
 // Handle form submission
 function handleFormSubmit() {
+    console.log('handleFormSubmit called');
+    console.log('isLoadingData:', isLoadingData);
+    
     if (isLoadingData) {
         alert('Data indlæses stadig. Prøv igen om et øjeblik.');
         return;
