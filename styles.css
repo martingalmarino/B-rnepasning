@@ -528,6 +528,45 @@ body {
 
 
 
+/* SEO Content Sections */
+.intro-section,
+.tilskud-section,
+.guide-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+    position: relative;
+}
+
+.intro-section h2,
+.tilskud-section h2,
+.guide-section h2 {
+    color: #1a202c;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.intro-section p,
+.tilskud-section p,
+.guide-section p {
+    color: #4a5568;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.intro-section p:last-child,
+.tilskud-section p:last-child,
+.guide-section p:last-child {
+    margin-bottom: 0;
+}
+
 /* FAQ Section */
 .faq {
     padding: 6rem 0;
@@ -843,6 +882,27 @@ body {
     .faq {
         padding: 2.5rem 0;
     }
+    
+    .intro-section,
+    .tilskud-section,
+    .guide-section {
+        padding: 2.5rem 0;
+    }
+    
+    .intro-section h2,
+    .tilskud-section h2,
+    .guide-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .intro-section p,
+    .tilskud-section p,
+    .guide-section p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+    
     
     .calculator-form {
         padding: 1.5rem;
