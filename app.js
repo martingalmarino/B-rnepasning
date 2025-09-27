@@ -86,11 +86,20 @@ function hideLoadingIndicator() {
 
 // Function to calculate price
 function calculatePrice() {
+    console.log('calculatePrice function called');
+    
     // Get form values
     const kommuneName = document.getElementById('kommuneSelect').value;
     const ageGroup = document.getElementById('alderSelect').value;
     const income = parseFloat(document.getElementById('incomeInput').value) || 0;
     const lunchChecked = document.getElementById('lunchCheckbox').checked;
+    
+    console.log('Form values:', {
+        kommuneName,
+        ageGroup,
+        income,
+        lunchChecked
+    });
     
     const resultBox = document.getElementById('resultBox');
     
@@ -168,13 +177,32 @@ function calculatePrice() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing calculator...');
     
+    // Check if all required elements exist
+    const kommuneSelect = document.getElementById('kommuneSelect');
+    const alderSelect = document.getElementById('alderSelect');
+    const incomeInput = document.getElementById('incomeInput');
+    const lunchCheckbox = document.getElementById('lunchCheckbox');
+    const calcButton = document.getElementById('calcButton');
+    const resultBox = document.getElementById('resultBox');
+    
+    console.log('Elements found:', {
+        kommuneSelect: !!kommuneSelect,
+        alderSelect: !!alderSelect,
+        incomeInput: !!incomeInput,
+        lunchCheckbox: !!lunchCheckbox,
+        calcButton: !!calcButton,
+        resultBox: !!resultBox
+    });
+    
     // Load data
     loadData();
     
     // Attach event listener to calculate button
-    const calcButton = document.getElementById('calcButton');
     if (calcButton) {
-        calcButton.addEventListener('click', calculatePrice);
+        calcButton.addEventListener('click', function() {
+            console.log('Calculate button clicked');
+            calculatePrice();
+        });
         console.log('Calculate button event listener attached');
     } else {
         console.error('calcButton element not found');
