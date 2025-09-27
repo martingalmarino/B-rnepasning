@@ -69,14 +69,46 @@ async function loadMunicipalityData() {
     
     try {
         console.log('Starting to load municipality data...');
-        const response = await fetch('./data/priser2025.json');
-        console.log('Fetch response:', response.status, response.statusText);
+        console.log('Current URL:', window.location.href);
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        // Try different paths for the JSON file
+        const possiblePaths = [
+            './data/priser2025.json',
+            '/data/priser2025.json',
+            'data/priser2025.json'
+        ];
+        
+        let response = null;
+        let usedPath = '';
+        
+        for (const path of possiblePaths) {
+            try {
+                console.log('Trying to fetch from:', path);
+                response = await fetch(path);
+                console.log('Fetch response for', path, ':', response.status, response.statusText);
+                
+                if (response.ok) {
+                    usedPath = path;
+                    break;
+                }
+            } catch (pathError) {
+                console.log('Failed to fetch from', path, ':', pathError.message);
+                continue;
+            }
         }
         
-        const data = await response.json();
+        if (!response || !response.ok) {
+            throw new Error(`Could not load JSON from any path. Last status: ${response?.status || 'no response'}`);
+        }
+        
+        console.log('Successfully loaded from:', usedPath);
+        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+        
+        const responseText = await response.text();
+        console.log('Response text length:', responseText.length);
+        console.log('Response preview:', responseText.substring(0, 200));
+        
+        const data = JSON.parse(responseText);
         console.log('JSON parsed successfully:', data.length, 'municipalities');
         console.log('First municipality:', data[0]);
         
