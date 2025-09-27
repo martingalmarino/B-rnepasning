@@ -156,6 +156,9 @@ function handleFormSubmit() {
     calculatePrice();
 }
 
+// Make function globally available
+window.handleFormSubmit = handleFormSubmit;
+
 // Smooth scroll to calculator
 function scrollToCalculator() {
     const calculator = document.getElementById('calculator');
@@ -163,6 +166,9 @@ function scrollToCalculator() {
         calculator.scrollIntoView({ behavior: 'smooth' });
     }
 }
+
+// Make function globally available
+window.scrollToCalculator = scrollToCalculator;
 
 // Update lunch price label based on selected municipality
 function updateLunchPriceLabel(municipalityInfo) {
@@ -323,6 +329,17 @@ function initializeMobileMenu() {
     }
 }
 
+// Initialize calculator event listeners
+function initializeCalculator() {
+    const form = document.getElementById('calculator-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmit();
+        });
+    }
+}
+
 // Initialize the application
 function init() {
     // Wait for DOM to be fully loaded
@@ -333,6 +350,7 @@ function init() {
         // Initialize other UI components
         initializeFAQ();
         initializeMobileMenu();
+        initializeCalculator();
     });
 }
 
