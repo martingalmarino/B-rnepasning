@@ -137,6 +137,7 @@
                                 <th>Vuggestue</th>
                                 <th>Børnehave</th>
                                 <th>SFO</th>
+                                <th>Kilde</th>
                             </tr>
                         </thead>
                         <tbody id="priceTableBody">
@@ -237,28 +238,28 @@
             const madordning = document.getElementById('madordning').checked;
             const indkomst = parseInt(document.getElementById('indkomst').value) || 0;
             
-            // Complete price data for all 20 municipalities
+            // Complete price data for all 20 municipalities with official sources
             const priser = {
-                'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650 },
-                'Frederiksberg': { vuggestue: 3745, boernehave: 2034, sfo: 1750, madordning: 600 },
-                'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620 },
-                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600 },
-                'Aalborg': { vuggestue: 3550, boernehave: 2250, sfo: 1550, madordning: 580 },
-                'Esbjerg': { vuggestue: 3480, boernehave: 2180, sfo: 1500, madordning: 580 },
-                'Randers': { vuggestue: 3400, boernehave: 2150, sfo: 1500, madordning: 570 },
-                'Kolding': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 570 },
-                'Vejle': { vuggestue: 3450, boernehave: 2180, sfo: 1500, madordning: 560 },
-                'Roskilde': { vuggestue: 4022, boernehave: 2600, sfo: 1800, madordning: 590 },
-                'Herning': { vuggestue: 3852, boernehave: 2300, sfo: 1600, madordning: 570 },
-                'Horsens': { vuggestue: 3480, boernehave: 2200, sfo: 1500, madordning: 560 },
-                'Holstebro': { vuggestue: 3400, boernehave: 2100, sfo: 1480, madordning: 550 },
-                'Næstved': { vuggestue: 3450, boernehave: 2150, sfo: 1500, madordning: 560 },
-                'Slagelse': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 560 },
-                'Hjørring': { vuggestue: 3400, boernehave: 2100, sfo: 1450, madordning: 540 },
-                'Sønderborg': { vuggestue: 3260, boernehave: 2100, sfo: 1480, madordning: 540 },
-                'Favrskov': { vuggestue: 3226, boernehave: 2080, sfo: 1450, madordning: 540 },
-                'Viborg': { vuggestue: 3380, boernehave: 2150, sfo: 1500, madordning: 540 },
-                'Gladsaxe': { vuggestue: 3600, boernehave: 2200, sfo: 1550, madordning: 560 }
+                'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650, kilde: "https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning" },
+                'Frederiksberg': { vuggestue: 3745, boernehave: 2034, sfo: 1750, madordning: 600, kilde: "https://www.frederiksberg.dk/dagtilbud-og-skole/priser-og-tilskud-til-boernepasning/priser-boernepasning" },
+                'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620, kilde: "https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus" },
+                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600, kilde: "https://www.odense.dk/borger/familie-boern-og-unge/dagtilbud/takster-tilskud-og-betaling/takster-og-betaling" },
+                'Aalborg': { vuggestue: 3550, boernehave: 2250, sfo: 1550, madordning: 580, kilde: "https://www.aalborg.dk/mit-liv/mit-barn/boernepasning/priser-og-vilkaar-for-dagtilbud-og-dus" },
+                'Esbjerg': { vuggestue: 3480, boernehave: 2180, sfo: 1500, madordning: 580, kilde: "https://boernepasning.esbjerg.dk/praktisk-information/priser-og-tilskud" },
+                'Randers': { vuggestue: 3400, boernehave: 2150, sfo: 1500, madordning: 570, kilde: "https://www.randers.dk/borger/boern-unge-og-familie/dagtilbud-og-pasning/takster-tilskud-og-oekonomisk-friplads/takster/" },
+                'Kolding': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 570, kilde: "https://www.kolding.dk/om-kommunen/oekonomi/takster/takster-for-dagtilbud" },
+                'Vejle': { vuggestue: 3450, boernehave: 2180, sfo: 1500, madordning: 560, kilde: "https://www.vejle.dk/da/service-og-selvbetjening/borger/boern-skole-og-familie/boernepasning-0-6-aar/priser-og-tilskud-til-boernepasning/" },
+                'Roskilde': { vuggestue: 4022, boernehave: 2600, sfo: 1800, madordning: 590, kilde: "https://www.roskilde.dk/da-dk/service-og-selvbetjening/borger/familie-og-born/dagtilbud/hvad-koster-en-plads-i-dagtilbud-sfo-eller-klub/" },
+                'Herning': { vuggestue: 3852, boernehave: 2300, sfo: 1600, madordning: 570, kilde: "https://www.herning.dk/borger/boern-og-unge/boernepasning/takster-for-boernepasning-2025" },
+                'Horsens': { vuggestue: 3480, boernehave: 2200, sfo: 1500, madordning: 560, kilde: "https://horsens.dk/familie/oekonomiogstoette/taksterdagtilbudogsfo" },
+                'Holstebro': { vuggestue: 3400, boernehave: 2100, sfo: 1480, madordning: 550, kilde: "https://www.holstebro.dk/priser-og-tilskud-til-boernepasning" },
+                'Næstved': { vuggestue: 3450, boernehave: 2150, sfo: 1500, madordning: 560, kilde: "https://www.naestved.dk/boern/dagtilbud/betaling-og-tilskud" },
+                'Slagelse': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 560, kilde: "https://www.slagelse.dk/da/service-og-selvbetjening/dagtilbud-og-skole/dagtilbud-0-6-aar/priser-og-tilskud-til-boernepasning/" },
+                'Hjørring': { vuggestue: 3400, boernehave: 2100, sfo: 1450, madordning: 540, kilde: "https://hjoerring.dk/borger/boern-unge-og-familie/pasningsmuligheder/kommunale-dagtilbud-0-6-aar/priser" },
+                'Sønderborg': { vuggestue: 3260, boernehave: 2100, sfo: 1480, madordning: 540, kilde: "https://sonderborgkommune.dk/priser-pasning" },
+                'Favrskov': { vuggestue: 3226, boernehave: 2080, sfo: 1450, madordning: 540, kilde: "https://favrskov.dk/takster/takster-boern-og-skole-omraadet" },
+                'Viborg': { vuggestue: 3380, boernehave: 2150, sfo: 1500, madordning: 540, kilde: "https://viborg.dk/borger/boern-unge-og-familie/boernepasning-0-6-aar/priser-for-dagtilbud/" },
+                'Gladsaxe': { vuggestue: 3600, boernehave: 2200, sfo: 1550, madordning: 560, kilde: "https://gladsaxe.dk/borger/boern-og-familie/boern-og-oekonomi/institutionstakster" }
             };
             
             if (!kommune || !alder || indkomst <= 0) {
@@ -299,26 +300,26 @@
         // Function to populate the price table
         function populatePriceTable() {
             const priser = {
-                'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650 },
-                'Frederiksberg': { vuggestue: 3745, boernehave: 2034, sfo: 1750, madordning: 600 },
-                'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620 },
-                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600 },
-                'Aalborg': { vuggestue: 3550, boernehave: 2250, sfo: 1550, madordning: 580 },
-                'Esbjerg': { vuggestue: 3480, boernehave: 2180, sfo: 1500, madordning: 580 },
-                'Randers': { vuggestue: 3400, boernehave: 2150, sfo: 1500, madordning: 570 },
-                'Kolding': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 570 },
-                'Vejle': { vuggestue: 3450, boernehave: 2180, sfo: 1500, madordning: 560 },
-                'Roskilde': { vuggestue: 4022, boernehave: 2600, sfo: 1800, madordning: 590 },
-                'Herning': { vuggestue: 3852, boernehave: 2300, sfo: 1600, madordning: 570 },
-                'Horsens': { vuggestue: 3480, boernehave: 2200, sfo: 1500, madordning: 560 },
-                'Holstebro': { vuggestue: 3400, boernehave: 2100, sfo: 1480, madordning: 550 },
-                'Næstved': { vuggestue: 3450, boernehave: 2150, sfo: 1500, madordning: 560 },
-                'Slagelse': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 560 },
-                'Hjørring': { vuggestue: 3400, boernehave: 2100, sfo: 1450, madordning: 540 },
-                'Sønderborg': { vuggestue: 3260, boernehave: 2100, sfo: 1480, madordning: 540 },
-                'Favrskov': { vuggestue: 3226, boernehave: 2080, sfo: 1450, madordning: 540 },
-                'Viborg': { vuggestue: 3380, boernehave: 2150, sfo: 1500, madordning: 540 },
-                'Gladsaxe': { vuggestue: 3600, boernehave: 2200, sfo: 1550, madordning: 560 }
+                'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650, kilde: "https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning" },
+                'Frederiksberg': { vuggestue: 3745, boernehave: 2034, sfo: 1750, madordning: 600, kilde: "https://www.frederiksberg.dk/dagtilbud-og-skole/priser-og-tilskud-til-boernepasning/priser-boernepasning" },
+                'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620, kilde: "https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus" },
+                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600, kilde: "https://www.odense.dk/borger/familie-boern-og-unge/dagtilbud/takster-tilskud-og-betaling/takster-og-betaling" },
+                'Aalborg': { vuggestue: 3550, boernehave: 2250, sfo: 1550, madordning: 580, kilde: "https://www.aalborg.dk/mit-liv/mit-barn/boernepasning/priser-og-vilkaar-for-dagtilbud-og-dus" },
+                'Esbjerg': { vuggestue: 3480, boernehave: 2180, sfo: 1500, madordning: 580, kilde: "https://boernepasning.esbjerg.dk/praktisk-information/priser-og-tilskud" },
+                'Randers': { vuggestue: 3400, boernehave: 2150, sfo: 1500, madordning: 570, kilde: "https://www.randers.dk/borger/boern-unge-og-familie/dagtilbud-og-pasning/takster-tilskud-og-oekonomisk-friplads/takster/" },
+                'Kolding': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 570, kilde: "https://www.kolding.dk/om-kommunen/oekonomi/takster/takster-for-dagtilbud" },
+                'Vejle': { vuggestue: 3450, boernehave: 2180, sfo: 1500, madordning: 560, kilde: "https://www.vejle.dk/da/service-og-selvbetjening/borger/boern-skole-og-familie/boernepasning-0-6-aar/priser-og-tilskud-til-boernepasning/" },
+                'Roskilde': { vuggestue: 4022, boernehave: 2600, sfo: 1800, madordning: 590, kilde: "https://www.roskilde.dk/da-dk/service-og-selvbetjening/borger/familie-og-born/dagtilbud/hvad-koster-en-plads-i-dagtilbud-sfo-eller-klub/" },
+                'Herning': { vuggestue: 3852, boernehave: 2300, sfo: 1600, madordning: 570, kilde: "https://www.herning.dk/borger/boern-og-unge/boernepasning/takster-for-boernepasning-2025" },
+                'Horsens': { vuggestue: 3480, boernehave: 2200, sfo: 1500, madordning: 560, kilde: "https://horsens.dk/familie/oekonomiogstoette/taksterdagtilbudogsfo" },
+                'Holstebro': { vuggestue: 3400, boernehave: 2100, sfo: 1480, madordning: 550, kilde: "https://www.holstebro.dk/priser-og-tilskud-til-boernepasning" },
+                'Næstved': { vuggestue: 3450, boernehave: 2150, sfo: 1500, madordning: 560, kilde: "https://www.naestved.dk/boern/dagtilbud/betaling-og-tilskud" },
+                'Slagelse': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 560, kilde: "https://www.slagelse.dk/da/service-og-selvbetjening/dagtilbud-og-skole/dagtilbud-0-6-aar/priser-og-tilskud-til-boernepasning/" },
+                'Hjørring': { vuggestue: 3400, boernehave: 2100, sfo: 1450, madordning: 540, kilde: "https://hjoerring.dk/borger/boern-unge-og-familie/pasningsmuligheder/kommunale-dagtilbud-0-6-aar/priser" },
+                'Sønderborg': { vuggestue: 3260, boernehave: 2100, sfo: 1480, madordning: 540, kilde: "https://sonderborgkommune.dk/priser-pasning" },
+                'Favrskov': { vuggestue: 3226, boernehave: 2080, sfo: 1450, madordning: 540, kilde: "https://favrskov.dk/takster/takster-boern-og-skole-omraadet" },
+                'Viborg': { vuggestue: 3380, boernehave: 2150, sfo: 1500, madordning: 540, kilde: "https://viborg.dk/borger/boern-unge-og-familie/boernepasning-0-6-aar/priser-for-dagtilbud/" },
+                'Gladsaxe': { vuggestue: 3600, boernehave: 2200, sfo: 1550, madordning: 560, kilde: "https://gladsaxe.dk/borger/boern-og-familie/boern-og-oekonomi/institutionstakster" }
             };
             
             const tbody = document.getElementById('priceTableBody');
@@ -332,6 +333,7 @@
                     <td>${data.vuggestue.toLocaleString('da-DK')} DKK</td>
                     <td>${data.boernehave.toLocaleString('da-DK')} DKK</td>
                     <td>${data.sfo.toLocaleString('da-DK')} DKK</td>
+                    <td><a href="${data.kilde}" target="_blank" rel="noopener" class="detail-link">Se detaljer</a></td>
                 `;
                 tbody.appendChild(row);
             });
