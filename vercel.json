@@ -25,6 +25,22 @@
     {
       "source": "/kommuner/([^/]+)",
       "destination": "/kommuner/$1.html"
+    },
+    {
+      "source": "/vilkaar-betingelser",
+      "destination": "/vilkaar-betingelser.html"
+    },
+    {
+      "source": "/privatlivspolitik",
+      "destination": "/privatlivspolitik.html"
+    },
+    {
+      "source": "/cookiepolitik",
+      "destination": "/cookiepolitik.html"
+    },
+    {
+      "source": "/juridisk-meddelelse",
+      "destination": "/juridisk-meddelelse.html"
     }
   ]
 }

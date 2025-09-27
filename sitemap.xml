@@ -128,4 +128,28 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.bornepasning.com/vilkaar-betingelser</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.bornepasning.com/privatlivspolitik</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.bornepasning.com/cookiepolitik</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.bornepasning.com/juridisk-meddelelse</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

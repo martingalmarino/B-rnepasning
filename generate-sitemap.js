@@ -64,6 +64,24 @@ function generateSitemap() {
   </url>`;
     });
 
+    // Add legal pages
+    const legalPages = [
+        'vilkaar-betingelser',
+        'privatlivspolitik', 
+        'cookiepolitik',
+        'juridisk-meddelelse'
+    ];
+
+    legalPages.forEach(page => {
+        sitemap += `
+  <url>
+    <loc>${DOMAIN}/${page}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>`;
+    });
+
     sitemap += `
 </urlset>`;
 
@@ -84,7 +102,7 @@ function main() {
         console.log(`✅ Sitemap generated successfully!`);
         console.log(`📁 Location: ${SITEMAP_PATH}`);
         console.log(`🌐 Domain: ${DOMAIN}`);
-        console.log(`📄 Total URLs: ${municipalities.length + 1} (1 home + ${municipalities.length} municipalities)`);
+        console.log(`📄 Total URLs: ${municipalities.length + 5} (1 home + ${municipalities.length} municipalities + 4 legal pages)`);
         
         // Show some statistics
         const topMunicipalities = municipalities
