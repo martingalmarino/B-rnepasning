@@ -1,0 +1,74 @@
+name: Automatic Year Update
+
+on:
+  schedule:
+    # Run on January 1st at 00:00 UTC
+    - cron: '0 0 1 1 *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-year:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Run year update script
+      run: |
+        echo "🔄 Running automatic year update..."
+        node update-year.js
+        
+    - name: Check for changes
+      id: changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "📝 Changes detected"
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "ℹ️ No changes needed"
+        fi
+        
+    - name: Commit and push changes
+      if: steps.changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "AUTO: Update year from 2025 to 2026
+
+        ✅ Automatic Year Update:
+           - Updated all instances of '2025' to '2026'
+           - Updated home page titles and content
+           - Updated all 20 municipality pages
+           - Updated generate-pages.js script
+           - Updated template.html for future generations
+
+        ✅ Files Updated:
+           - index.html (home page)
+           - kommuner/template.html
+           - kommuner/*.html (all 20 municipality pages)
+           - generate-pages.js
+
+        This update was performed automatically on January 1st, 2026."
+        
+        git push
+        
+    - name: Success message
+      if: steps.changes.outputs.changes == 'true'
+      run: |
+        echo "✅ Year update completed and pushed to repository"
+        echo "🌐 Website will be automatically updated on Vercel"
+        
+    - name: No changes message
+      if: steps.changes.outputs.changes == 'false'
+      run: |
+        echo "ℹ️ No changes were needed - website is already up to date"
