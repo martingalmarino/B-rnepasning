@@ -17,6 +17,7 @@ async function loadData() {
         if (resultBox) {
             resultBox.textContent = 'Fejl ved indlæsning af data. Prøv igen senere.';
             resultBox.style.display = 'block';
+            resultBox.classList.remove('hidden');
         }
     }
 }
@@ -107,18 +108,21 @@ function calculatePrice() {
     if (!kommuneName) {
         resultBox.textContent = 'Vælg venligst en kommune.';
         resultBox.style.display = 'block';
+        resultBox.classList.remove('hidden');
         return;
     }
     
     if (!ageGroup) {
         resultBox.textContent = 'Vælg venligst barnets alder.';
         resultBox.style.display = 'block';
+        resultBox.classList.remove('hidden');
         return;
     }
     
     if (income <= 0) {
         resultBox.textContent = 'Indtast venligst en gyldig husstandsindkomst.';
         resultBox.style.display = 'block';
+        resultBox.classList.remove('hidden');
         return;
     }
     
@@ -127,6 +131,7 @@ function calculatePrice() {
     if (!kommuneData) {
         resultBox.textContent = 'Kommune ikke fundet i datasættet.';
         resultBox.style.display = 'block';
+        resultBox.classList.remove('hidden');
         return;
     }
     
@@ -135,6 +140,7 @@ function calculatePrice() {
     if (!baseRate) {
         resultBox.textContent = 'Pris ikke fundet for valgt aldersgruppe.';
         resultBox.style.display = 'block';
+        resultBox.classList.remove('hidden');
         return;
     }
     
@@ -161,6 +167,7 @@ function calculatePrice() {
     // Display result
     resultBox.textContent = `Forventet månedlig pris: ${price.toLocaleString('da-DK')} DKK`;
     resultBox.style.display = 'block';
+    resultBox.classList.remove('hidden');
     
     console.log('Price calculated:', {
         kommune: kommuneName,
