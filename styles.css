@@ -339,31 +339,15 @@ body {
 
 /* Prices Table Section */
 .prices {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background: white;
-    position: relative;
-}
-
-.prices::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
 }
 
 .table-container {
     overflow-x: auto;
-    background: rgba(255, 255, 255, 0.95);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    z-index: 2;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
 }
 
 .prices-table {
@@ -379,18 +363,16 @@ body {
 }
 
 .prices-table th {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    font-weight: 700;
+    background: #f9fafb;
+    font-weight: 600;
     color: #374151;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .prices-table tr:hover {
-    background: rgba(102, 126, 234, 0.02);
-    transform: scale(1.01);
-    transition: all 0.3s ease;
+    background: #f9fafb;
 }
 
 .prices-table td {
@@ -399,20 +381,18 @@ body {
 }
 
 .detail-link {
-    color: #667eea;
+    color: #0066CC;
     text-decoration: none;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background: rgba(102, 126, 234, 0.1);
-    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: #f0f9ff;
+    transition: background-color 0.2s ease;
     display: inline-block;
 }
 
 .detail-link:hover {
-    background: rgba(102, 126, 234, 0.2);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    background: #e0f2fe;
 }
 
 .municipality-link {
@@ -1503,8 +1483,7 @@ a:focus {
     
     .table-container {
         margin: 0 -1rem;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
     }
     
     .prices-table {
@@ -1553,7 +1532,7 @@ a:focus {
 @media (max-width: 480px) {
     .table-container {
         margin: 0 -0.5rem;
-        border-radius: 8px;
+        border-radius: 6px;
     }
     
     .prices-table {
