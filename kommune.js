@@ -104,6 +104,9 @@ async function loadMunicipalityData() {
         
         // Try different paths for the JSON file
         const possiblePaths = [
+            './priser2025.json',
+            '/priser2025.json',
+            'priser2025.json',
             './data/priser2025.json',
             '/data/priser2025.json',
             'data/priser2025.json'

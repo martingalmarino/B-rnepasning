@@ -66,6 +66,9 @@ async function loadMunicipalityData() {
         
         // Try different paths for the JSON file
         const possiblePaths = [
+            './priser2025.json',
+            '/priser2025.json',
+            'priser2025.json',
             './data/priser2025.json',
             '/data/priser2025.json',
             'data/priser2025.json'
@@ -96,10 +99,18 @@ async function loadMunicipalityData() {
         
         console.log('Successfully loaded from:', usedPath);
         console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+        console.log('Response status:', response.status);
+        console.log('Response statusText:', response.statusText);
         
         const responseText = await response.text();
         console.log('Response text length:', responseText.length);
         console.log('Response preview:', responseText.substring(0, 200));
+        console.log('Response ends with:', responseText.substring(responseText.length - 50));
+        
+        // Validate JSON structure
+        if (!responseText.trim().startsWith('[')) {
+            throw new Error('JSON response does not start with array bracket');
+        }
         
         const data = JSON.parse(responseText);
         console.log('JSON parsed successfully:', data.length, 'municipalities');
