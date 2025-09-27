@@ -9,10 +9,6 @@
     {
       "source": "/kommuner/:slug",
       "destination": "/kommune.html?kommune=:slug"
-    },
-    {
-      "source": "/:slug",
-      "destination": "/kommune.html?kommune=:slug"
     }
   ],
   "headers": [
@@ -30,6 +26,37 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/styles.css",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.css)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.js)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
         }
       ]
     },
