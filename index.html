@@ -75,26 +75,6 @@
                             <label for="kommune">Kommune</label>
                             <select id="kommune" name="kommune" required>
                                 <option value="">Vælg kommune</option>
-                                <option value="koebenhavn">København</option>
-                                <option value="aarhus">Aarhus</option>
-                                <option value="odense">Odense</option>
-                                <option value="aalborg">Aalborg</option>
-                                <option value="esbjerg">Esbjerg</option>
-                                <option value="randers">Randers</option>
-                                <option value="kolding">Kolding</option>
-                                <option value="vejle">Vejle</option>
-                                <option value="roskilde">Roskilde</option>
-                                <option value="herning">Herning</option>
-                                <option value="horsens">Horsens</option>
-                                <option value="holstebro">Holstebro</option>
-                                <option value="naestved">Næstved</option>
-                                <option value="slagelse">Slagelse</option>
-                                <option value="hjoerring">Hjørring</option>
-                                <option value="soenderborg">Sønderborg</option>
-                                <option value="favrskov">Favrskov</option>
-                                <option value="viborg">Viborg</option>
-                                <option value="gladsaxe">Gladsaxe</option>
-                                <option value="frederiksberg">Frederiksberg</option>
                             </select>
                         </div>
 
@@ -110,7 +90,7 @@
 
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="madordning" name="madordning">
-                            <label for="madordning">Inkluder madordning (+650 DKK)</label>
+                            <label for="madordning" id="madordning-label">Inkluder madordning</label>
                         </div>
 
                         <div class="form-group">
@@ -118,7 +98,7 @@
                             <input type="number" id="husstandsindkomst" name="husstandsindkomst" placeholder="fx. 400000" required>
                         </div>
 
-                        <button type="button" class="calculate-button" onclick="calculateSimplePrice()">Beregn</button>
+                        <button type="submit" class="calculate-button">Beregn</button>
                     </form>
 
                     <div id="result" class="result-box hidden">
@@ -216,90 +196,146 @@
     </footer>
 
     <script>
-        // Simple calculator function - no complex dependencies
-        function calculateSimplePrice() {
-            const kommune = document.getElementById('kommune').value;
-            const alder = document.getElementById('barnets-alder').value;
-            const madordning = document.getElementById('madordning').checked;
-            const husstandsindkomst = parseInt(document.getElementById('husstandsindkomst').value) || 0;
+        // Global variables
+        let municipalityData = [];
+        let isLoadingData = true;
+
+        // Load municipality data from JSON
+        async function loadMunicipalityData() {
+            try {
+                const response = await fetch('data/priser2025.json');
+                municipalityData = await response.json();
+                isLoadingData = false;
+                hideLoadingIndicator();
+                initializeCalculator();
+                initializePriceTable();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                // Fallback data
+                municipalityData = [
+                    { kommune: "København", vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650, kilde: "https://www.kk.dk" },
+                    { kommune: "Aarhus", vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620, kilde: "https://aarhus.dk" },
+                    { kommune: "Odense", vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600, kilde: "https://www.odense.dk" }
+                ];
+                isLoadingData = false;
+                hideLoadingIndicator();
+                initializeCalculator();
+                initializePriceTable();
+            }
+        }
+
+        // Hide loading indicator
+        function hideLoadingIndicator() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        // Initialize calculator dropdown
+        function initializeCalculator() {
+            const kommuneSelect = document.getElementById('kommune');
+            if (!kommuneSelect) return;
+            
+            kommuneSelect.innerHTML = '<option value="">Vælg kommune</option>';
+            
+            municipalityData.forEach(municipality => {
+                const option = document.createElement('option');
+                option.value = municipality.kommune;
+                option.textContent = municipality.kommune;
+                kommuneSelect.appendChild(option);
+            });
+        }
+
+        // Initialize price table
+        function initializePriceTable() {
+            const tableBody = document.querySelector('.prices-table tbody');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            municipalityData.forEach(municipality => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${municipality.kommune}</td>
+                    <td>${municipality.vuggestue.toLocaleString('da-DK')} DKK</td>
+                    <td>${municipality.boernehave.toLocaleString('da-DK')} DKK</td>
+                    <td>${municipality.sfo.toLocaleString('da-DK')} DKK</td>
+                    <td><a href="${municipality.kilde}" target="_blank" rel="noopener" class="detail-link">Se detaljer</a></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Calculate price
+        function calculatePrice() {
+            const form = document.getElementById('calculator-form');
+            if (!form) return;
+            
+            const formData = new FormData(form);
+            const kommune = formData.get('kommune');
+            const alder = formData.get('barnets-alder');
+            const madordning = formData.get('madordning') === 'on';
+            const husstandsindkomst = parseInt(formData.get('husstandsindkomst')) || 0;
             
             if (!kommune || !alder || husstandsindkomst <= 0) {
                 alert('Udfyld venligst alle felter korrekt.');
                 return;
             }
             
-            // Simple price data - hardcoded for reliability
-            const prices = {
-                koebenhavn: { vuggestue: 3996, boernehave: 2317, sfo: 1800 },
-                aarhus: { vuggestue: 3637, boernehave: 2288, sfo: 1600 },
-                odense: { vuggestue: 3500, boernehave: 2150, sfo: 1500 },
-                aalborg: { vuggestue: 3550, boernehave: 2250, sfo: 1550 },
-                esbjerg: { vuggestue: 3480, boernehave: 2180, sfo: 1500 },
-                randers: { vuggestue: 3400, boernehave: 2150, sfo: 1500 },
-                kolding: { vuggestue: 3450, boernehave: 2200, sfo: 1500 },
-                vejle: { vuggestue: 3450, boernehave: 2180, sfo: 1500 },
-                roskilde: { vuggestue: 4022, boernehave: 2600, sfo: 1800 },
-                herning: { vuggestue: 3852, boernehave: 2300, sfo: 1600 },
-                horsens: { vuggestue: 3480, boernehave: 2200, sfo: 1500 },
-                holstebro: { vuggestue: 3400, boernehave: 2100, sfo: 1480 },
-                naestved: { vuggestue: 3450, boernehave: 2150, sfo: 1500 },
-                slagelse: { vuggestue: 3450, boernehave: 2200, sfo: 1500 },
-                hjoerring: { vuggestue: 3400, boernehave: 2100, sfo: 1450 },
-                soenderborg: { vuggestue: 3260, boernehave: 2100, sfo: 1480 },
-                favrskov: { vuggestue: 3226, boernehave: 2080, sfo: 1450 },
-                viborg: { vuggestue: 3380, boernehave: 2150, sfo: 1500 },
-                gladsaxe: { vuggestue: 3600, boernehave: 2200, sfo: 1550 },
-                frederiksberg: { vuggestue: 3745, boernehave: 2034, sfo: 1750 }
-            };
-            
-            const municipalityPrices = prices[kommune];
-            if (!municipalityPrices) {
+            const municipalityInfo = municipalityData.find(m => m.kommune === kommune);
+            if (!municipalityInfo) {
                 alert('Kommune ikke fundet.');
                 return;
             }
             
-            let basePrice = municipalityPrices[alder] || 0;
-            
-            // Add lunch cost if selected
-            if (madordning) {
-                basePrice += 650;
-            }
+            const baseRate = municipalityInfo[alder] || 0;
+            const lunchCost = madordning ? (municipalityInfo.madordning || 0) : 0;
             
             // Calculate subsidy based on income
-            let finalPrice = basePrice;
+            let subsidyFactor = 1;
             if (husstandsindkomst < 300000) {
-                finalPrice = basePrice * 0.3; // 70% subsidy
+                subsidyFactor = 0.3; // 70% subsidy
             } else if (husstandsindkomst < 500000) {
-                finalPrice = basePrice * 0.5; // 50% subsidy
+                subsidyFactor = 0.5; // 50% subsidy
             } else if (husstandsindkomst < 700000) {
-                finalPrice = basePrice * 0.7; // 30% subsidy
+                subsidyFactor = 0.7; // 30% subsidy
             }
-            // Higher income = no subsidy (full price)
+            
+            const finalPrice = Math.round((baseRate + lunchCost) * subsidyFactor);
             
             // Display result
-            const resultElement = document.getElementById('calculated-price');
-            const resultBox = document.getElementById('result');
-            
-            if (resultElement && resultBox) {
-                resultElement.textContent = Math.round(finalPrice).toLocaleString('da-DK') + ' DKK';
-                resultBox.style.display = 'block';
-                resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+            document.getElementById('calculated-price').textContent = `${finalPrice.toLocaleString('da-DK')} DKK`;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        
-        // Simple scroll function
+
+        // Handle form submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            if (isLoadingData) {
+                alert('Data indlæses stadig. Prøv igen om et øjeblik.');
+                return;
+            }
+            calculatePrice();
+        }
+
+        // Smooth scroll to calculator
         function scrollToCalculator() {
             const calculator = document.getElementById('calculator');
             if (calculator) {
                 calculator.scrollIntoView({ behavior: 'smooth' });
             }
         }
-        
-        // Hide loading indicator when page loads
+
+        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            const loadingIndicator = document.getElementById('loading-indicator');
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
+            loadMunicipalityData();
+            
+            // Add form submit event listener
+            const form = document.getElementById('calculator-form');
+            if (form) {
+                form.addEventListener('submit', handleFormSubmit);
             }
         });
     </script>
