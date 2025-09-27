@@ -2,8 +2,24 @@
 
 ## 🚀 Cómo ejecutar la aplicación
 
-### Opción 1: Servidor Local (Recomendado)
+### Opción 1: Vercel (Recomendado - Producción)
 Para ver todos los 20 municipios y funcionalidad completa:
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Desplegar a Vercel
+vercel
+
+# O conectar directamente desde GitHub
+# https://vercel.com/new -> Importar repositorio GitHub
+```
+
+**Live Demo:** [https://bornepasning-dk.vercel.app](https://bornepasning-dk.vercel.app)
+
+### Opción 2: Servidor Local (Desarrollo)
+Para desarrollo local:
 
 ```bash
 # Navegar al directorio del proyecto
@@ -16,7 +32,7 @@ python3 -m http.server 8000
 http://localhost:8000
 ```
 
-### Opción 2: Abrir directamente (Limitado)
+### Opción 3: Abrir directamente (Limitado)
 Si abres `index.html` directamente desde el explorador de archivos:
 - ❌ Solo verás 3 municipios (København, Aarhus, Odense)
 - ❌ El mapa no funcionará completamente
@@ -100,7 +116,8 @@ bornepasning/
 - **CSS3** - Diseño responsive y moderno
 - **JavaScript ES6+** - Funcionalidad interactiva
 - **Leaflet.js** - Mapas interactivos
-- **Python HTTP Server** - Servidor de desarrollo
+- **Vercel** - Hosting y deployment
+- **Python HTTP Server** - Servidor de desarrollo local
 
 ## 📱 Compatibilidad
 
@@ -110,6 +127,40 @@ bornepasning/
 - ✅ **Móviles** - Diseño responsive
 - ✅ **Tablets** - Optimizado para touch
 
+## 🚀 Deployment en Vercel
+
+### Configuración Automática
+1. **Conectar GitHub**: Ve a [Vercel](https://vercel.com/new) y conecta tu repositorio GitHub
+2. **Importar Proyecto**: Selecciona `martingalmarino/B-rnepasning`
+3. **Deploy Automático**: Vercel detectará automáticamente la configuración
+
+### Configuración Manual
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Login en Vercel
+vercel login
+
+# Deploy desde el directorio del proyecto
+vercel
+
+# Deploy a producción
+vercel --prod
+```
+
+### Archivos de Configuración
+- ✅ `vercel.json` - Configuración de routing y headers
+- ✅ `package.json` - Metadatos del proyecto
+- ✅ `.gitignore` - Archivos a ignorar
+
+### Ventajas de Vercel
+- ✅ **HTTPS automático** - Sin problemas de CORS
+- ✅ **CDN global** - Carga rápida en todo el mundo
+- ✅ **Deploy automático** - Cada push a GitHub actualiza el sitio
+- ✅ **Dominio personalizado** - Posibilidad de usar dominio propio
+- ✅ **Analytics** - Métricas de uso incluidas
+
 ---
 
-**Nota:** Para la mejor experiencia, siempre ejecuta la aplicación desde un servidor local usando `python3 -m http.server 8000` y accede a `http://localhost:8000`.
+**Nota:** Para la mejor experiencia, usa Vercel para producción o ejecuta la aplicación desde un servidor local usando `python3 -m http.server 8000` y accede a `http://localhost:8000`.
