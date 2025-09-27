@@ -65,49 +65,44 @@
         <section id="calculator" class="calculator">
             <div class="container">
                 <h2 class="section-title">Beregn din månedlige pris</h2>
-                <div id="loading-indicator" class="loading-indicator">
-                    <div class="loading-spinner"></div>
-                    <p>Indlæser prisdata...</p>
-                </div>
                 <div class="calculator-form">
-                    <form id="calculator-form">
-                        <div class="form-group">
-                            <label for="kommuneSelect">Kommune</label>
-                            <select id="kommuneSelect" required>
-                                <option value="">Vælg kommune</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="kommune">Kommune</label>
+                        <select id="kommune">
+                            <option value="">Vælg kommune</option>
+                            <option value="København">København</option>
+                            <option value="Aarhus">Aarhus</option>
+                            <option value="Odense">Odense</option>
+                        </select>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="alderSelect">Barnets alder</label>
-                            <select id="alderSelect" required>
-                                <option value="">Vælg alder</option>
-                                <option value="vuggestue">Vuggestue (0-3 år)</option>
-                                <option value="boernehave">Børnehave (3-6 år)</option>
-                                <option value="sfo">SFO (6-10 år)</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="alder">Barnets alder</label>
+                        <select id="alder">
+                            <option value="">Vælg alder</option>
+                            <option value="vuggestue">Vuggestue (0-3 år)</option>
+                            <option value="boernehave">Børnehave (3-6 år)</option>
+                            <option value="sfo">SFO (6-10 år)</option>
+                        </select>
+                    </div>
 
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="lunchCheckbox">
-                            <label for="lunchCheckbox">Inkluder madordning</label>
-                        </div>
+                    <div class="form-group">
+                        <label for="madordning">Inkluder madordning</label>
+                        <input type="checkbox" id="madordning">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="incomeInput">Husstandsindkomst (DKK/år)</label>
-                            <input type="number" id="incomeInput" placeholder="fx. 400000" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="indkomst">Husstandsindkomst (DKK/år)</label>
+                        <input type="number" id="indkomst" placeholder="fx. 400000">
+                    </div>
 
-                        <button type="button" id="calcButton" class="calculate-button">Beregn</button>
-                    </form>
+                    <button onclick="beregnPris()" class="calculate-button">Beregn</button>
 
-                    <div id="resultBox" class="result-box hidden">
+                    <div id="resultat" class="result-box" style="display: none;">
                         <h3>Din månedlige pris</h3>
                         <div class="price-display">
-                            <span id="calculated-price" class="price-amount">0</span>
-                            <span class="price-currency">DKK</span>
+                            <span id="pris">0</span> DKK
                         </div>
-                        <p class="price-note">* Vejledende pris baseret på officielle data</p>
                     </div>
                 </div>
             </div>
@@ -195,6 +190,60 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script>
+        // Simple calculator function
+        function beregnPris() {
+            const kommune = document.getElementById('kommune').value;
+            const alder = document.getElementById('alder').value;
+            const madordning = document.getElementById('madordning').checked;
+            const indkomst = parseInt(document.getElementById('indkomst').value) || 0;
+            
+            // Simple price data
+            const priser = {
+                'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650 },
+                'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620 },
+                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600 }
+            };
+            
+            if (!kommune || !alder || indkomst <= 0) {
+                alert('Udfyld alle felter korrekt.');
+                return;
+            }
+            
+            const kommuneData = priser[kommune];
+            if (!kommuneData) {
+                alert('Kommune ikke fundet.');
+                return;
+            }
+            
+            let basePrice = kommuneData[alder];
+            if (!basePrice) {
+                alert('Alder ikke fundet.');
+                return;
+            }
+            
+            // Add lunch if selected
+            if (madordning) {
+                basePrice += kommuneData.madordning;
+            }
+            
+            // Calculate subsidy
+            let finalPrice = basePrice;
+            if (indkomst < 250000) {
+                finalPrice = basePrice * 0.6; // 40% subsidy
+            } else if (indkomst < 350000) {
+                finalPrice = basePrice * 0.8; // 20% subsidy
+            }
+            
+            // Show result
+            document.getElementById('pris').textContent = Math.round(finalPrice).toLocaleString('da-DK');
+            document.getElementById('resultat').style.display = 'block';
+        }
+        
+        // Scroll function
+        function scrollToCalculator() {
+            document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
