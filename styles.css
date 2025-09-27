@@ -696,6 +696,26 @@ body {
     text-decoration: underline;
 }
 
+.source-link {
+    color: #0066CC;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: #f0f9ff;
+    border: 1px solid #0066CC;
+    transition: all 0.2s ease;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.source-link:hover {
+    background: #0066CC;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
 .cta-button.secondary {
     background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
     color: white;

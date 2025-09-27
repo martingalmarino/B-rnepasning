@@ -40,6 +40,7 @@
                 <div class="hero-text">
                     <h1 class="hero-title">Børnepasningspriser Aarhus 2025</h1>
                     <p class="hero-subtitle">Find de aktuelle priser for børnepasning i Aarhus og beregn din månedlige udgift</p>
+                    <button onclick="scrollToCalculator()" class="cta-button">Beregn pris nu</button>
                 </div>
             </div>
         </div>
@@ -116,7 +117,7 @@
                 </table>
             </div>
             <div class="source-info">
-                <p>Kilde: <a href="https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus" target="_blank" rel="noopener">https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus</a></p>
+                <p>Kilde: <a href="https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus" target="_blank" rel="noopener" class="source-link">Se officielle priser på Aarhus Kommunes hjemmeside</a></p>
             </div>
         </div>
     </section>
@@ -207,6 +208,11 @@
             // Show result
             document.getElementById('pris').textContent = Math.round(finalPrice).toLocaleString('da-DK');
             document.getElementById('resultat').style.display = 'block';
+        }
+        
+        // Scroll function
+        function scrollToCalculator() {
+            document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>

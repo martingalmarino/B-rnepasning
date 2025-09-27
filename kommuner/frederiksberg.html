@@ -40,6 +40,7 @@
                 <div class="hero-text">
                     <h1 class="hero-title">Børnepasningspriser Frederiksberg 2025</h1>
                     <p class="hero-subtitle">Find de aktuelle priser for børnepasning i Frederiksberg og beregn din månedlige udgift</p>
+                    <button onclick="scrollToCalculator()" class="cta-button">Beregn pris nu</button>
                 </div>
             </div>
         </div>
@@ -116,7 +117,7 @@
                 </table>
             </div>
             <div class="source-info">
-                <p>Kilde: <a href="https://www.frederiksberg.dk/dagtilbud-og-skole/priser-og-tilskud-til-boernepasning/priser-boernepasning" target="_blank" rel="noopener">https://www.frederiksberg.dk/dagtilbud-og-skole/priser-og-tilskud-til-boernepasning/priser-boernepasning</a></p>
+                <p>Kilde: <a href="https://www.frederiksberg.dk/dagtilbud-og-skole/priser-og-tilskud-til-boernepasning/priser-boernepasning" target="_blank" rel="noopener" class="source-link">Se officielle priser på Frederiksberg Kommunes hjemmeside</a></p>
             </div>
         </div>
     </section>
@@ -207,6 +208,11 @@
             // Show result
             document.getElementById('pris').textContent = Math.round(finalPrice).toLocaleString('da-DK');
             document.getElementById('resultat').style.display = 'block';
+        }
+        
+        // Scroll function
+        function scrollToCalculator() {
+            document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
