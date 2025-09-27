@@ -96,51 +96,21 @@ function getMunicipalitySlug() {
 }
 
 /**
- * Load municipality data from JSON
+ * Load municipality data from embedded data
  */
-async function loadMunicipalityData() {
+function loadMunicipalityData() {
+    console.log('Loading municipality data from embedded source...');
+    
     try {
-        console.log('Loading municipality data...');
-        
-        // Try different paths for the JSON file
-        const possiblePaths = [
-            './priser2025.json',
-            '/priser2025.json',
-            'priser2025.json',
-            './data/priser2025.json',
-            '/data/priser2025.json',
-            'data/priser2025.json'
-        ];
-        
-        let response = null;
-        let usedPath = '';
-        
-        for (const path of possiblePaths) {
-            try {
-                console.log('Trying to fetch from:', path);
-                response = await fetch(path);
-                console.log('Fetch response for', path, ':', response.status, response.statusText);
-                
-                if (response.ok) {
-                    usedPath = path;
-                    break;
-                }
-            } catch (pathError) {
-                console.log('Failed to fetch from', path, ':', pathError.message);
-                continue;
-            }
+        // Use embedded data from data.js
+        if (typeof MUNICIPALITY_DATA !== 'undefined' && MUNICIPALITY_DATA.length > 0) {
+            municipalityData = MUNICIPALITY_DATA;
+            console.log('Embedded municipality data loaded successfully:', municipalityData.length, 'municipalities');
+            console.log('First municipality:', municipalityData[0]);
+        } else {
+            console.error('Embedded data not available');
+            return false;
         }
-        
-        if (!response || !response.ok) {
-            throw new Error(`Could not load JSON from any path. Last status: ${response?.status || 'no response'}`);
-        }
-        
-        console.log('Successfully loaded from:', usedPath);
-        const responseText = await response.text();
-        const data = JSON.parse(responseText);
-        
-        municipalityData = data;
-        console.log('Municipality data loaded successfully:', municipalityData.length, 'municipalities');
         
         return true;
     } catch (error) {
@@ -415,7 +385,7 @@ function initializeMobileMenu() {
 /**
  * Main initialization function
  */
-async function init() {
+function init() {
     console.log('Initializing municipality page...');
     
     // Show loading state
@@ -432,7 +402,7 @@ async function init() {
     }
     
     // Load municipality data
-    const dataLoaded = await loadMunicipalityData();
+    const dataLoaded = loadMunicipalityData();
     if (!dataLoaded) {
         console.error('Failed to load municipality data');
         showError();
