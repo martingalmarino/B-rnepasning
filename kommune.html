@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Børnepasning i [Kommune] 2025 – priser og beregner</title>
+    <meta name="description" id="page-description" content="Se de nyeste takster for børnepasning i [Kommune] 2025. Beregn din pris med vores værktøj.">
+    <link rel="canonical" id="canonical-url" href="">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="og-title" content="Børnepasning i [Kommune] 2025 – priser og beregner">
+    <meta property="og:description" id="og-description" content="Se de nyeste takster for børnepasning i [Kommune] 2025. Beregn din pris med vores værktøj.">
+    <meta property="og:url" id="og-url" content="">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" id="twitter-title" content="Børnepasning i [Kommune] 2025 – priser og beregner">
+    <meta property="twitter:description" id="twitter-description" content="Se de nyeste takster for børnepasning i [Kommune] 2025. Beregn din pris med vores værktøj.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">Børnepasning.dk</span>
+                </a>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html#calculator" class="nav-link">Beregner</a></li>
+                        <li><a href="index.html#prices" class="nav-link">Priser pr. kommune</a></li>
+                        <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 id="hero-title">Børnepasning i [Kommune]</h1>
+                        <p class="hero-subtitle">Se de nyeste priser og beregn din månedlige omkostning for børnepasning i [Kommune].</p>
+                        <a href="index.html#prices" class="cta-button secondary">← Tilbage til alle kommuner</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loading-section" class="loading-section">
+            <div class="container">
+                <div class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <p>Indlæser data for kommune...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div id="error-section" class="error-section hidden">
+            <div class="container">
+                <div class="error-message">
+                    <h2>Kommune ikke fundet</h2>
+                    <p>Den ønskede kommune kunne ikke findes. Prøv at gå tilbage til <a href="index.html">hovedlisten</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Municipality Content (shown after loading) -->
+        <div id="municipality-content" class="hidden">
+            <!-- Prices Section -->
+            <section class="prices">
+                <div class="container">
+                    <h2 class="section-title">Priser i <span id="municipality-name"></span></h2>
+                    <div class="table-container">
+                        <table class="prices-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Månedlig pris</th>
+                                </tr>
+                            </thead>
+                            <tbody id="municipality-prices-table">
+                                <!-- Dynamic content will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="source-info">
+                        <p><strong>Kilde:</strong> <a id="source-link" href="" target="_blank" rel="noopener">Officielle kommunale priser</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section id="calculator" class="calculator">
+                <div class="container">
+                    <h2 class="section-title">Beregn din pris</h2>
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="kommune">Kommune</label>
+                            <select id="kommune" name="kommune" required>
+                                <option value="">Vælg kommune</option>
+                                <!-- Municipality will be pre-selected -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="barnets-alder">Barnets alder</label>
+                            <select id="barnets-alder" name="barnets-alder" required>
+                                <option value="">Vælg aldersgruppe</option>
+                                <option value="vuggestue">Vuggestue (0-2 år)</option>
+                                <option value="boernehave">Børnehave (3-5 år)</option>
+                                <option value="sfo">SFO (6-10 år)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="madordning">
+                                <input type="checkbox" id="madordning" name="madordning">
+                                <span id="madordning-label">Inkluder madordning (DKK/måned)</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="husstandsindkomst">Husstandsindkomst (DKK/år)</label>
+                            <input type="number" id="husstandsindkomst" name="husstandsindkomst" placeholder="f.eks. 400000" min="0" required>
+                        </div>
+                        
+                        <button type="button" class="calculate-button" onclick="handleFormSubmit()">Beregn pris</button>
+                        
+                        <div id="result" class="result-box hidden">
+                            <h3>Din månedlige pris</h3>
+                            <div class="price-amount" id="price-amount">0 DKK</div>
+                            <p class="price-note">* Prisen er vejledende og kan variere</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section">
+                <div class="container">
+                    <h2 class="section-title">Beliggenhed</h2>
+                    <div id="mapid"></div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq">
+                <div class="container">
+                    <h2 class="section-title">Ofte stillede spørgsmål</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Hvordan ansøger jeg om plads i børnepasning?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Du skal ansøge direkte til din kommune gennem deres officielle hjemmeside. Ansøgningsprocessen og tidsfrister varierer fra kommune til kommune.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Hvornår skal jeg søge plads?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Det anbefales at søge plads så tidligt som muligt, ofte allerede under graviditeten. Mange kommuner har specifikke ansøgningsperioder.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Kan jeg få økonomisk støtte?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ja, de fleste familier kan få tilskud til børnepasning. Tilskuddets størrelse afhænger af din husstandsindkomst og barnets alder.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <p class="disclaimer">
+                        <strong>Vigtigt:</strong> Priserne er vejledende og baseret på officielle kommunale data. 
+                        Kontakt din kommune for de mest aktuelle oplysninger og ansøgningsregler.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <p class="copyright">© <span id="current-year"></span> Børnepasning.dk | <a href="https://international.kk.dk" target="_blank" rel="noopener">International.kk.dk</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="kommune.js"></script>
+</body>
+</html>

@@ -475,6 +475,22 @@ body {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
+.municipality-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.municipality-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #4c51bf;
+    transform: translateY(-1px);
+}
+
 
 .map-placeholder {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
@@ -565,6 +581,96 @@ body {
 .tilskud-section p:last-child,
 .guide-section p:last-child {
     margin-bottom: 0;
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+/* Municipality-specific page styles */
+.loading-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+    text-align: center;
+}
+
+.loading-section .loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.loading-section p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.error-section {
+    padding: 4rem 0;
+    background: #fef2f2;
+    text-align: center;
+}
+
+.error-section h2 {
+    color: #dc2626;
+    margin-bottom: 1rem;
+}
+
+.error-section p {
+    color: #991b1b;
+    margin-bottom: 1.5rem;
+}
+
+.error-section a {
+    color: #dc2626;
+    text-decoration: underline;
+}
+
+.source-info {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.source-info p {
+    margin: 0;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.source-info a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.source-info a:hover {
+    text-decoration: underline;
+}
+
+.cta-button.secondary {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cta-button.secondary:hover {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 85, 104, 0.3);
 }
 
 /* FAQ Section */

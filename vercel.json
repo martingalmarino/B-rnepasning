@@ -5,6 +5,14 @@
     {
       "source": "/",
       "destination": "/index.html"
+    },
+    {
+      "source": "/kommuner/:slug",
+      "destination": "/kommune.html?kommune=:slug"
+    },
+    {
+      "source": "/:slug",
+      "destination": "/kommune.html?kommune=:slug"
     }
   ],
   "headers": [

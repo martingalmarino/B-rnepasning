@@ -532,7 +532,7 @@ function initializePriceTable() {
     municipalitiesToShow.forEach(municipality => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${municipality.kommune}</td>
+            <td><a href="/kommuner/${createMunicipalitySlug(municipality.kommune)}" class="municipality-link">${municipality.kommune}</a></td>
             <td>${formatPrice(municipality.vuggestue)} DKK</td>
             <td>${formatPrice(municipality.boernehave)} DKK</td>
             <td>${formatPrice(municipality.sfo)} DKK</td>
