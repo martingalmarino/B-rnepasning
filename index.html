@@ -204,7 +204,7 @@
         async function loadMunicipalityData() {
             console.log('Loading municipality data...');
             try {
-                const response = await fetch('data/priser2025.json');
+                const response = await fetch('priser2025.json');
                 console.log('Response status:', response.status);
                 municipalityData = await response.json();
                 console.log('Municipality data loaded:', municipalityData.length, 'municipalities');
