@@ -30,6 +30,19 @@
       ]
     },
     {
+      "source": "/kommune-styles.css",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
+      ]
+    },
+    {
       "source": "/styles.css",
       "headers": [
         {
