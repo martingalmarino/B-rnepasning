@@ -10,8 +10,6 @@ const fallbackData = [
         "boernehave": 2317,
         "sfo": 1800,
         "madordning": 650,
-        "lat": 55.6758,
-        "lng": 12.5683,
         "kilde": "https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
     },
     {
@@ -20,8 +18,6 @@ const fallbackData = [
         "boernehave": 2288,
         "sfo": 1600,
         "madordning": 620,
-        "lat": 56.1629,
-        "lng": 10.2039,
         "kilde": "https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus"
     },
     {
@@ -30,8 +26,6 @@ const fallbackData = [
         "boernehave": 2150,
         "sfo": 1500,
         "madordning": 600,
-        "lat": 55.4038,
-        "lng": 10.4024,
         "kilde": "https://www.odense.dk/borger/familie-boern-og-unge/dagtilbud/takster-tilskud-og-betaling/takster-og-betaling"
     }
 ];
@@ -63,7 +57,6 @@ async function loadMunicipalityData() {
         // Initialize UI components with fallback data
         initializeCalculator();
         initializePriceTable();
-        initializeMap();
         return;
     }
     
@@ -122,7 +115,6 @@ async function loadMunicipalityData() {
         // Initialize UI components after data is loaded
         initializeCalculator();
         initializePriceTable();
-        initializeMap();
         
     } catch (error) {
         console.error('Error loading municipality data:', error);
@@ -146,7 +138,6 @@ async function loadMunicipalityData() {
         // Initialize UI components with fallback data
         initializeCalculator();
         initializePriceTable();
-        initializeMap();
     }
 }
 
@@ -553,70 +544,6 @@ function initializePriceTable() {
     console.log('Price table initialized with', municipalitiesToShow.length, 'municipalities');
 }
 
-// Initialize interactive map with Leaflet
-function initializeMap() {
-    // Check if Leaflet is available
-    if (typeof L === 'undefined') {
-        console.error('Leaflet library not loaded');
-        return;
-    }
-
-    // Initialize map centered on Denmark
-    const map = L.map('mapid').setView([56.0, 10.0], 6);
-
-    // Add OpenStreetMap tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Add markers for each municipality
-    municipalityData.forEach(municipality => {
-        if (municipality.lat && municipality.lng) {
-            const marker = L.marker([municipality.lat, municipality.lng]).addTo(map);
-            
-            // Calculate average price
-            const averagePrice = Math.round((municipality.vuggestue + municipality.boernehave + municipality.sfo) / 3);
-            
-            // Create popup content
-            const popupContent = `
-                <div style="min-width: 200px; font-family: 'Inter', sans-serif;">
-                    <h3 style="margin: 0 0 10px 0; color: #333; font-size: 16px; font-weight: 600;">${municipality.kommune}</h3>
-                    <div style="margin-bottom: 8px;">
-                        <strong>Vuggestue:</strong> ${formatPrice(municipality.vuggestue)} DKK
-                    </div>
-                    <div style="margin-bottom: 8px;">
-                        <strong>Børnehave:</strong> ${formatPrice(municipality.boernehave)} DKK
-                    </div>
-                    <div style="margin-bottom: 8px;">
-                        <strong>SFO:</strong> ${formatPrice(municipality.sfo)} DKK
-                    </div>
-                    <div style="margin-bottom: 10px; padding: 8px; background: #f8f9fa; border-radius: 6px; font-size: 14px;">
-                        <strong>Gennemsnit:</strong> ${formatPrice(averagePrice)} DKK/måned
-                    </div>
-                    <a href="${municipality.kilde}" target="_blank" style="color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500;">
-                        Se officielle priser →
-                    </a>
-                </div>
-            `;
-            
-            marker.bindPopup(popupContent);
-        }
-    });
-
-    // Fit map to show all markers
-    if (municipalityData.length > 0) {
-        const group = new L.featureGroup();
-        municipalityData.forEach(municipality => {
-            if (municipality.lat && municipality.lng) {
-                group.addLayer(L.marker([municipality.lat, municipality.lng]));
-            }
-        });
-        map.fitBounds(group.getBounds().pad(0.1));
-    }
-
-    console.log('Map initialized with', municipalityData.length, 'municipality markers');
-    return map;
-}
 
 // Initialize the application
 function init() {

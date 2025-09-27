@@ -475,22 +475,6 @@ body {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
-/* Map Section */
-.map-section {
-    padding: 6rem 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    position: relative;
-}
-
-.map-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="1.5" fill="%23667eea" opacity="0.1"/><circle cx="70" cy="20" r="1" fill="%23764ba2" opacity="0.1"/><circle cx="20" cy="70" r="2" fill="%23667eea" opacity="0.1"/><circle cx="80" cy="80" r="1.5" fill="%23764ba2" opacity="0.1"/></svg>');
-}
 
 .map-placeholder {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
@@ -540,55 +524,9 @@ body {
     filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.2));
 }
 
-/* Interactive Map Styles */
-#mapid {
-    width: 100%;
-    height: 500px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    position: relative;
-    z-index: 1;
-    background: #f8f9fa;
-}
 
-/* Custom Leaflet Popup Styles */
-.leaflet-popup-content-wrapper {
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
 
-.leaflet-popup-content {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-}
 
-.leaflet-popup-tip {
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
-}
-
-/* Custom marker styles */
-.leaflet-marker-icon {
-    transition: transform 0.2s ease;
-}
-
-.leaflet-marker-icon:hover {
-    transform: scale(1.1);
-}
-
-/* Map loading state */
-#mapid:empty::before {
-    content: 'Indlæser kort...';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #666;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
 
 /* FAQ Section */
 .faq {
@@ -829,17 +767,11 @@ body {
         font-size: 2.8rem;
     }
     
-    .map-section {
-        padding: 4rem 0;
-    }
     
     .map-placeholder {
         padding: 3rem 2rem;
     }
     
-    #mapid {
-        height: 400px;
-    }
     
     .faq {
         padding: 4rem 0;
@@ -908,7 +840,6 @@ body {
     
     .calculator,
     .prices,
-    .map-section,
     .faq {
         padding: 2.5rem 0;
     }
@@ -969,10 +900,6 @@ body {
         padding: 2.5rem 1.5rem;
     }
     
-    #mapid {
-        height: 300px;
-        border-radius: 16px;
-    }
     
     .map-content h3 {
         font-size: 1.3rem;
@@ -1065,10 +992,6 @@ body {
         font-size: 1rem;
     }
     
-    #mapid {
-        height: 250px;
-        border-radius: 12px;
-    }
 }
 
 /* Improve table responsiveness */
@@ -1115,14 +1038,10 @@ body {
     
     .calculator,
     .prices,
-    .map-section,
     .faq {
         padding: 2rem 0;
     }
     
-    #mapid {
-        height: 250px;
-    }
 }
 
 /* Accessibility */
