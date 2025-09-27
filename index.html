@@ -196,46 +196,185 @@
     </footer>
 
     <script>
-        // Global variables
-        let municipalityData = [];
-        let isLoadingData = true;
-
-        // Load municipality data from JSON
-        async function loadMunicipalityData() {
-            console.log('Loading municipality data...');
-            try {
-                const response = await fetch('priser2025.json');
-                console.log('Response status:', response.status);
-                municipalityData = await response.json();
-                console.log('Municipality data loaded:', municipalityData.length, 'municipalities');
-                console.log('First municipality:', municipalityData[0]);
-                isLoadingData = false;
-                hideLoadingIndicator();
-                initializeCalculator();
-                initializePriceTable();
-            } catch (error) {
-                console.error('Error loading data:', error);
-                console.log('Using fallback data');
-                // Fallback data
-                municipalityData = [
-                    { kommune: "København", vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650, kilde: "https://www.kk.dk" },
-                    { kommune: "Aarhus", vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620, kilde: "https://aarhus.dk" },
-                    { kommune: "Odense", vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600, kilde: "https://www.odense.dk" }
-                ];
-                isLoadingData = false;
-                hideLoadingIndicator();
-                initializeCalculator();
-                initializePriceTable();
+        // Municipality data - embedded directly for reliability
+        const municipalityData = [
+            {
+                "kommune": "København",
+                "vuggestue": 3996,
+                "boernehave": 2317,
+                "sfo": 1800,
+                "madordning": 650,
+                "kilde": "https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+            },
+            {
+                "kommune": "Frederiksberg",
+                "vuggestue": 3745,
+                "boernehave": 2034,
+                "sfo": 1750,
+                "madordning": 600,
+                "kilde": "https://www.frederiksberg.dk/dagtilbud-og-skole/priser-og-tilskud-til-boernepasning/priser-boernepasning"
+            },
+            {
+                "kommune": "Aarhus",
+                "vuggestue": 3637,
+                "boernehave": 2288,
+                "sfo": 1600,
+                "madordning": 620,
+                "kilde": "https://aarhus.dk/borger/pasning-skole-og-uddannelse/pasning-0-6-aar/takster-tilskud-og-betaling/priser-og-betaling/hvad-koster-pasning-i-aarhus"
+            },
+            {
+                "kommune": "Odense",
+                "vuggestue": 3500,
+                "boernehave": 2150,
+                "sfo": 1500,
+                "madordning": 600,
+                "kilde": "https://www.odense.dk/borger/familie-boern-og-unge/dagtilbud/takster-tilskud-og-betaling/takster-og-betaling"
+            },
+            {
+                "kommune": "Aalborg",
+                "vuggestue": 3550,
+                "boernehave": 2250,
+                "sfo": 1550,
+                "madordning": 580,
+                "kilde": "https://www.aalborg.dk/mit-liv/mit-barn/boernepasning/priser-og-vilkaar-for-dagtilbud-og-dus"
+            },
+            {
+                "kommune": "Esbjerg",
+                "vuggestue": 3480,
+                "boernehave": 2180,
+                "sfo": 1500,
+                "madordning": 580,
+                "kilde": "https://boernepasning.esbjerg.dk/praktisk-information/priser-og-tilskud"
+            },
+            {
+                "kommune": "Randers",
+                "vuggestue": 3400,
+                "boernehave": 2150,
+                "sfo": 1500,
+                "madordning": 570,
+                "kilde": "https://www.randers.dk/borger/boern-unge-og-familie/dagtilbud-og-pasning/takster-tilskud-og-oekonomisk-friplads/takster/"
+            },
+            {
+                "kommune": "Kolding",
+                "vuggestue": 3450,
+                "boernehave": 2200,
+                "sfo": 1500,
+                "madordning": 570,
+                "kilde": "https://www.kolding.dk/om-kommunen/oekonomi/takster/takster-for-dagtilbud"
+            },
+            {
+                "kommune": "Vejle",
+                "vuggestue": 3450,
+                "boernehave": 2180,
+                "sfo": 1500,
+                "madordning": 560,
+                "kilde": "https://www.vejle.dk/da/service-og-selvbetjening/borger/boern-skole-og-familie/boernepasning-0-6-aar/priser-og-tilskud-til-boernepasning/"
+            },
+            {
+                "kommune": "Roskilde",
+                "vuggestue": 4022,
+                "boernehave": 2600,
+                "sfo": 1800,
+                "madordning": 590,
+                "kilde": "https://www.roskilde.dk/da-dk/service-og-selvbetjening/borger/familie-og-born/dagtilbud/hvad-koster-en-plads-i-dagtilbud-sfo-eller-klub/"
+            },
+            {
+                "kommune": "Herning",
+                "vuggestue": 3852,
+                "boernehave": 2300,
+                "sfo": 1600,
+                "madordning": 570,
+                "kilde": "https://www.herning.dk/borger/boern-og-unge/boernepasning/takster-for-boernepasning-2025"
+            },
+            {
+                "kommune": "Horsens",
+                "vuggestue": 3480,
+                "boernehave": 2200,
+                "sfo": 1500,
+                "madordning": 560,
+                "kilde": "https://horsens.dk/familie/oekonomiogstoette/taksterdagtilbudogsfo"
+            },
+            {
+                "kommune": "Holstebro",
+                "vuggestue": 3400,
+                "boernehave": 2100,
+                "sfo": 1480,
+                "madordning": 550,
+                "kilde": "https://www.holstebro.dk/priser-og-tilskud-til-boernepasning"
+            },
+            {
+                "kommune": "Næstved",
+                "vuggestue": 3450,
+                "boernehave": 2150,
+                "sfo": 1500,
+                "madordning": 560,
+                "kilde": "https://www.naestved.dk/boern/dagtilbud/betaling-og-tilskud"
+            },
+            {
+                "kommune": "Slagelse",
+                "vuggestue": 3450,
+                "boernehave": 2200,
+                "sfo": 1500,
+                "madordning": 560,
+                "kilde": "https://www.slagelse.dk/da/service-og-selvbetjening/dagtilbud-og-skole/dagtilbud-0-6-aar/priser-og-tilskud-til-boernepasning/"
+            },
+            {
+                "kommune": "Hjørring",
+                "vuggestue": 3400,
+                "boernehave": 2100,
+                "sfo": 1450,
+                "madordning": 540,
+                "kilde": "https://hjoerring.dk/borger/boern-unge-og-familie/pasningsmuligheder/kommunale-dagtilbud-0-6-aar/priser"
+            },
+            {
+                "kommune": "Sønderborg",
+                "vuggestue": 3260,
+                "boernehave": 2100,
+                "sfo": 1480,
+                "madordning": 540,
+                "kilde": "https://sonderborgkommune.dk/priser-pasning"
+            },
+            {
+                "kommune": "Favrskov",
+                "vuggestue": 3226,
+                "boernehave": 2080,
+                "sfo": 1450,
+                "madordning": 540,
+                "kilde": "https://favrskov.dk/takster/takster-boern-og-skole-omraadet"
+            },
+            {
+                "kommune": "Viborg",
+                "vuggestue": 3380,
+                "boernehave": 2150,
+                "sfo": 1500,
+                "madordning": 540,
+                "kilde": "https://viborg.dk/borger/boern-unge-og-familie/boernepasning-0-6-aar/priser-for-dagtilbud/"
+            },
+            {
+                "kommune": "Gladsaxe",
+                "vuggestue": 3600,
+                "boernehave": 2200,
+                "sfo": 1550,
+                "madordning": 560,
+                "kilde": "https://gladsaxe.dk/borger/boern-og-familie/boern-og-oekonomi/institutionstakster"
             }
-        }
+        ];
 
-        // Hide loading indicator
-        function hideLoadingIndicator() {
-            const loadingIndicator = document.getElementById('loading-indicator');
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalculator();
+            initializePriceTable();
+            hideLoadingIndicator();
+            
+            // Add form submit event listener
+            const form = document.getElementById('calculator-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    calculatePrice();
+                });
             }
-        }
+        });
 
         // Initialize calculator dropdown
         function initializeCalculator() {
@@ -272,22 +411,20 @@
             });
         }
 
+        // Hide loading indicator
+        function hideLoadingIndicator() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
         // Calculate price
         function calculatePrice() {
-            console.log('calculatePrice called');
-            const form = document.getElementById('calculator-form');
-            if (!form) {
-                console.log('Form not found');
-                return;
-            }
-            
-            const formData = new FormData(form);
-            const kommune = formData.get('kommune');
-            const alder = formData.get('barnets-alder');
-            const madordning = formData.get('madordning') === 'on';
-            const husstandsindkomst = parseInt(formData.get('husstandsindkomst')) || 0;
-            
-            console.log('Form data:', { kommune, alder, madordning, husstandsindkomst });
+            const kommune = document.getElementById('kommune').value;
+            const alder = document.getElementById('barnets-alder').value;
+            const madordning = document.getElementById('madordning').checked;
+            const husstandsindkomst = parseInt(document.getElementById('husstandsindkomst').value) || 0;
             
             if (!kommune || !alder || husstandsindkomst <= 0) {
                 alert('Udfyld venligst alle felter korrekt.');
@@ -295,8 +432,6 @@
             }
             
             const municipalityInfo = municipalityData.find(m => m.kommune === kommune);
-            console.log('Municipality info:', municipalityInfo);
-            
             if (!municipalityInfo) {
                 alert('Kommune ikke fundet.');
                 return;
@@ -304,8 +439,6 @@
             
             const baseRate = municipalityInfo[alder] || 0;
             const lunchCost = madordning ? (municipalityInfo.madordning || 0) : 0;
-            
-            console.log('Base rate:', baseRate, 'Lunch cost:', lunchCost);
             
             // Calculate subsidy based on income
             let subsidyFactor = 1;
@@ -318,34 +451,16 @@
             }
             
             const finalPrice = Math.round((baseRate + lunchCost) * subsidyFactor);
-            console.log('Final price:', finalPrice);
             
             // Display result
             const resultElement = document.getElementById('calculated-price');
             const resultBox = document.getElementById('result');
             
-            console.log('Result element:', resultElement, 'Result box:', resultBox);
-            
             if (resultElement && resultBox) {
                 resultElement.textContent = `${finalPrice.toLocaleString('da-DK')} DKK`;
                 resultBox.style.display = 'block';
                 resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                console.log('Result displayed successfully');
-            } else {
-                console.log('Result elements not found');
             }
-        }
-
-        // Handle form submission
-        function handleFormSubmit(e) {
-            console.log('handleFormSubmit called');
-            e.preventDefault();
-            console.log('isLoadingData:', isLoadingData);
-            if (isLoadingData) {
-                alert('Data indlæses stadig. Prøv igen om et øjeblik.');
-                return;
-            }
-            calculatePrice();
         }
 
         // Smooth scroll to calculator
@@ -355,17 +470,6 @@
                 calculator.scrollIntoView({ behavior: 'smooth' });
             }
         }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadMunicipalityData();
-            
-            // Add form submit event listener
-            const form = document.getElementById('calculator-form');
-            if (form) {
-                form.addEventListener('submit', handleFormSubmit);
-            }
-        });
     </script>
 </body>
 </html>
