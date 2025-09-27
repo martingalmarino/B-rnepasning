@@ -336,19 +336,19 @@
             
             pillsContainer.innerHTML = '';
             
-            municipalities.forEach(municipality => {
-                const pill = document.createElement('a');
-                pill.href = `kommuner/${municipality.slug}.html`;
-                pill.className = 'municipality-pill';
-                pill.innerHTML = `
-                    <div class="pill-content">
-                        <h3 class="pill-name">${municipality.name}</h3>
-                        <p class="pill-price">Gennemsnit: ${municipality.avgPrice.toLocaleString('da-DK')} DKK/måned</p>
-                        <span class="pill-arrow">→</span>
-                    </div>
-                `;
-                pillsContainer.appendChild(pill);
-            });
+                municipalities.forEach(municipality => {
+                    const pill = document.createElement('a');
+                    pill.href = `kommuner/${municipality.slug}`;
+                    pill.className = 'municipality-pill';
+                    pill.innerHTML = `
+                        <div class="pill-content">
+                            <h3 class="pill-name">${municipality.name}</h3>
+                            <p class="pill-price">Gennemsnit: ${municipality.avgPrice.toLocaleString('da-DK')} DKK/måned</p>
+                            <span class="pill-arrow">→</span>
+                        </div>
+                    `;
+                    pillsContainer.appendChild(pill);
+                });
         }
         
         // Initialize table and pills when page loads

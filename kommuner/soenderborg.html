@@ -14,14 +14,14 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1><a href="../index.html" style="text-decoration: none; color: inherit;">Børnepasning.dk</a></h1>
+                    <a href="../index.html">Børnepasning.dk</a>
                 </div>
                 <nav class="nav">
                     <ul class="nav-list">
-                        <li><a href="../index.html" class="nav-link">Forside</a></li>
-                        <li><a href="../index.html#calculator" class="nav-link">Beregner</a></li>
-                        <li><a href="../index.html#prices" class="nav-link">Alle kommuner</a></li>
-                        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+                        <li><a href="../index.html">Hjem</a></li>
+                        <li><a href="../index.html#calculator">Beregn Pris</a></li>
+                        <li><a href="../index.html#prices">Priser</a></li>
+                        <li><a href="../index.html#faq">FAQ</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-toggle">
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="kommune">Kommune</label>
                     <select id="kommune">
-                        <option value="Sønderborg" selected>Sønderborg</option>
+                        <option value="Sønderborg">Sønderborg</option>
                     </select>
                 </div>
 
@@ -91,26 +91,32 @@
     </section>
 
     <!-- Local Prices Section -->
-    <section class="prices-section">
+    <section class="prices">
         <div class="container">
             <h2 class="section-title">Priser i Sønderborg</h2>
             <div class="table-container">
                 <table class="prices-table">
                     <thead>
                         <tr>
-                            <th>Kommune</th>
-                            <th>Vuggestue</th>
-                            <th>Børnehave</th>
-                            <th>SFO</th>
-                            <th>Madordning</th>
+                            <th>Type</th>
+                            <th>Månedlig pris</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Sønderborg</td>
+                            <td>Vuggestue (0-3 år)</td>
                             <td>3.260 DKK</td>
-                            <td>{{BOERNHAVE_PRICE}} DKK</td>
+                        </tr>
+                        <tr>
+                            <td>Børnehave (3-6 år)</td>
+                            <td>{{BOERNEHAVE_PRICE}} DKK</td>
+                        </tr>
+                        <tr>
+                            <td>SFO (6-10 år)</td>
                             <td>1.480 DKK</td>
+                        </tr>
+                        <tr>
+                            <td>Madordning</td>
                             <td>540 DKK</td>
                         </tr>
                     </tbody>
@@ -125,26 +131,34 @@
     <!-- Local FAQ Section -->
     <section class="faq">
         <div class="container">
-            <h2 class="section-title">Ofte stillede spørgsmål - Sønderborg</h2>
+            <h2 class="section-title">Ofte stillede spørgsmål om børnepasning i Sønderborg</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvad koster børnepasning i Sønderborg?</h3>
-                    <p class="faq-answer">Priserne i Sønderborg er 3.260 DKK for vuggestue, {{BOERNHAVE_PRICE}} DKK for børnehave og 1.480 DKK for SFO. Madordning koster 540 DKK ekstra per måned.</p>
+                    <button class="faq-question">
+                        <span>Hvad koster børnepasning i Sønderborg?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Priserne for børnepasning i Sønderborg varierer efter barnets alder og om du ønsker madordning. Vuggestue koster 3.260 DKK/måned, børnehave {{BOERNEHAVE_PRICE}} DKK/måned, og SFO 1.480 DKK/måned. Madordning koster yderligere 540 DKK/måned.</p>
+                    </div>
                 </div>
-                
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvordan ansøger jeg om plads i Sønderborg?</h3>
-                    <p class="faq-answer">Du kan ansøge om plads gennem Sønderborg Kommunes hjemmeside eller ved at kontakte kommunens børne- og ungdomsforvaltning. Ansøgningen kan laves online eller på papir.</p>
+                    <button class="faq-question">
+                        <span>Hvordan ansøger jeg om børnepasning i Sønderborg?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Du kan ansøge om børnepasning via Sønderborg Kommunes hjemmeside. Ansøgningen kan sendes online, og du vil modtage svar inden for få uger. Det er vigtigt at ansøge i god tid, da der kan være ventelister.</p>
+                    </div>
                 </div>
-                
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvilke tilskud kan jeg få i Sønderborg?</h3>
-                    <p class="faq-answer">Tilskuddet afhænger af din husstandsindkomst. Familier med indkomst under 250.000 DKK får 40% tilskud, mens familier med indkomst under 350.000 DKK får 20% tilskud.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3 class="faq-question">Hvornår skal jeg ansøge om plads?</h3>
-                    <p class="faq-answer">Det anbefales at ansøge så snart du ved, at du har brug for børnepasning. I Sønderborg er der typisk ansøgningsfrister, så kontakt kommunen for aktuelle oplysninger.</p>
+                    <button class="faq-question">
+                        <span>Er der tilskud til børnepasning i Sønderborg?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ja, du kan få tilskud til børnepasning baseret på din husstandsindkomst. Jo lavere indkomst, jo højere tilskud. Brug vores beregner ovenfor for at finde ud af, hvor meget du skal betale efter tilskud.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,55 +168,79 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="disclaimer">
-                    <p>Oplysningerne er vejledende og baseret på officielle kommunale data. Kontakt din kommune for de mest aktuelle priser og betingelser.</p>
+                <div class="footer-section">
+                    <h3>Børnepasning.dk</h3>
+                    <p>Sammenlign priser og beregn din månedlige udgift til børnepasning i Danmark.</p>
                 </div>
-                <div class="copyright">
-                    <p class="copyright">© 2025 Børnepasning.dk | <a href="https://international.kk.dk" target="_blank" rel="noopener">International.kk.dk</a></p>
+                <div class="footer-section">
+                    <h4>Vigtige links</h4>
+                    <ul>
+                        <li><a href="../index.html">Hjem</a></li>
+                        <li><a href="../index.html#calculator">Beregn pris</a></li>
+                        <li><a href="../index.html#prices">Priser pr. kommune</a></li>
+                        <li><a href="../index.html#faq">FAQ</a></li>
+                    </ul>
                 </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>Har du spørgsmål til børnepasningspriser? Kontakt din kommune direkte for de mest opdaterede oplysninger.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{CURRENT_YEAR}} Børnepasning.dk. Alle priser er vejledende og kan variere.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Municipality data
-        const kommuneData = {
-            kommune: "Sønderborg",
-            vuggestue: 3.260,
-            boernehave: {{BOERNHAVE_PRICE}},
-            sfo: 1.480,
-            madordning: 540
+        // Price data for this municipality
+        const municipalityData = {
+            'Sønderborg': {
+                vuggestue: 3.260,
+                boernehave: {{BOERNEHAVE_PRICE}},
+                sfo: 1.480,
+                madordning: 540
+            }
         };
 
-        // Simple calculator function
         function beregnPris() {
             const kommune = document.getElementById('kommune').value;
             const alder = document.getElementById('alder').value;
             const madordning = document.getElementById('madordning').checked;
             const indkomst = parseInt(document.getElementById('indkomst').value) || 0;
-            
-            if (!kommune || !alder || indkomst <= 0) {
-                alert('Udfyld alle felter korrekt.');
+
+            if (!kommune || !alder) {
+                alert('Vælg venligst kommune og barnets alder');
                 return;
             }
-            
-            let basePrice = kommuneData[alder];
-            if (!basePrice) {
-                alert('Alder ikke fundet.');
+
+            const municipality = municipalityData[kommune];
+            if (!municipality) {
+                alert('Kommune ikke fundet');
                 return;
             }
-            
-            // Add lunch if selected
+
+            let basePrice = 0;
+            if (alder === 'vuggestue') {
+                basePrice = municipality.vuggestue;
+            } else if (alder === 'boernehave') {
+                basePrice = municipality.boernehave;
+            } else if (alder === 'sfo') {
+                basePrice = municipality.sfo;
+            }
+
             if (madordning) {
-                basePrice += kommuneData.madordning;
+                basePrice += municipality.madordning;
             }
-            
-            // Calculate subsidy
+
+            // Calculate subsidy based on income
             let finalPrice = basePrice;
-            if (indkomst < 250000) {
-                finalPrice = basePrice * 0.6; // 40% subsidy
-            } else if (indkomst < 350000) {
-                finalPrice = basePrice * 0.8; // 20% subsidy
+            if (indkomst > 0) {
+                if (indkomst < 250000) {
+                    finalPrice = basePrice * 0.6; // 40% subsidy
+                } else if (indkomst < 350000) {
+                    finalPrice = basePrice * 0.8; // 20% subsidy
+                }
             }
             
             // Show result
