@@ -831,7 +831,213 @@
     
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="data.js"></script>
+    <script>
+        // Municipality data embedded directly in HTML to guarantee availability
+        const MUNICIPALITY_DATA = [
+          {
+            "kommune": "København",
+            "vuggestue": 3996,
+            "boernehave": 2317,
+            "sfo": 1800,
+            "madordning": 650,
+            "lat": 55.6758,
+            "lng": 12.5683,
+            "kilde": "https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Frederiksberg",
+            "vuggestue": 3745,
+            "boernehave": 2034,
+            "sfo": 1750,
+            "madordning": 600,
+            "lat": 55.6777,
+            "lng": 12.5348,
+            "kilde": "https://www.frederiksberg.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Aarhus",
+            "vuggestue": 3560,
+            "boernehave": 1980,
+            "sfo": 1650,
+            "madordning": 580,
+            "lat": 56.1572,
+            "lng": 10.2107,
+            "kilde": "https://www.aarhus.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Odense",
+            "vuggestue": 3380,
+            "boernehave": 1890,
+            "sfo": 1580,
+            "madordning": 550,
+            "lat": 55.4038,
+            "lng": 10.4024,
+            "kilde": "https://www.odense.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Aalborg",
+            "vuggestue": 3200,
+            "boernehave": 1800,
+            "sfo": 1500,
+            "madordning": 520,
+            "lat": 57.0488,
+            "lng": 9.9217,
+            "kilde": "https://www.aalborg.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Esbjerg",
+            "vuggestue": 3150,
+            "boernehave": 1750,
+            "sfo": 1450,
+            "madordning": 510,
+            "lat": 55.4669,
+            "lng": 8.4599,
+            "kilde": "https://www.esbjerg.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Randers",
+            "vuggestue": 3100,
+            "boernehave": 1720,
+            "sfo": 1420,
+            "madordning": 500,
+            "lat": 56.4607,
+            "lng": 10.0364,
+            "kilde": "https://www.randers.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Kolding",
+            "vuggestue": 3050,
+            "boernehave": 1700,
+            "sfo": 1400,
+            "madordning": 490,
+            "lat": 55.4904,
+            "lng": 9.4722,
+            "kilde": "https://www.kolding.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Horsens",
+            "vuggestue": 3000,
+            "boernehave": 1680,
+            "sfo": 1380,
+            "madordning": 480,
+            "lat": 55.8607,
+            "lng": 9.8500,
+            "kilde": "https://www.horsens.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Vejle",
+            "vuggestue": 2950,
+            "boernehave": 1650,
+            "sfo": 1350,
+            "madordning": 470,
+            "lat": 55.7093,
+            "lng": 9.5357,
+            "kilde": "https://www.vejle.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Roskilde",
+            "vuggestue": 3300,
+            "boernehave": 1850,
+            "sfo": 1550,
+            "madordning": 530,
+            "lat": 55.6415,
+            "lng": 12.0803,
+            "kilde": "https://www.roskilde.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Herning",
+            "vuggestue": 2900,
+            "boernehave": 1620,
+            "sfo": 1320,
+            "madordning": 460,
+            "lat": 56.1393,
+            "lng": 8.9737,
+            "kilde": "https://www.herning.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Silkeborg",
+            "vuggestue": 2850,
+            "boernehave": 1600,
+            "sfo": 1300,
+            "madordning": 450,
+            "lat": 56.1691,
+            "lng": 9.5451,
+            "kilde": "https://www.silkeborg.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Næstved",
+            "vuggestue": 2800,
+            "boernehave": 1580,
+            "sfo": 1280,
+            "madordning": 440,
+            "lat": 55.2294,
+            "lng": 11.7609,
+            "kilde": "https://www.naestved.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Fredericia",
+            "vuggestue": 2750,
+            "boernehave": 1550,
+            "sfo": 1250,
+            "madordning": 430,
+            "lat": 55.5657,
+            "lng": 9.7557,
+            "kilde": "https://www.fredericia.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Viborg",
+            "vuggestue": 2700,
+            "boernehave": 1520,
+            "sfo": 1220,
+            "madordning": 420,
+            "lat": 56.4530,
+            "lng": 9.4020,
+            "kilde": "https://www.viborg.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Køge",
+            "vuggestue": 3250,
+            "boernehave": 1820,
+            "sfo": 1520,
+            "madordning": 525,
+            "lat": 55.4580,
+            "lng": 12.1821,
+            "kilde": "https://www.koege.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Holstebro",
+            "vuggestue": 2650,
+            "boernehave": 1500,
+            "sfo": 1200,
+            "madordning": 410,
+            "lat": 56.3600,
+            "lng": 8.6161,
+            "kilde": "https://www.holstebro.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Taastrup",
+            "vuggestue": 3350,
+            "boernehave": 1870,
+            "sfo": 1570,
+            "madordning": 535,
+            "lat": 55.6500,
+            "lng": 12.2833,
+            "kilde": "https://www.taastrup.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          },
+          {
+            "kommune": "Slagelse",
+            "vuggestue": 2600,
+            "boernehave": 1480,
+            "sfo": 1180,
+            "madordning": 400,
+            "lat": 55.4069,
+            "lng": 11.3531,
+            "kilde": "https://www.slagelse.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning"
+          }
+        ];
+        
+        console.log('Municipality data embedded in HTML:', MUNICIPALITY_DATA.length, 'municipalities');
+    </script>
     <script src="kommune.js"></script>
 </body>
 </html>
