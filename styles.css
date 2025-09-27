@@ -343,6 +343,11 @@ body {
     background: white;
 }
 
+.prices-section {
+    padding: 4rem 0 6rem 0;
+    background: white;
+}
+
 .table-container {
     overflow-x: auto;
     background: white;
@@ -1073,6 +1078,10 @@ body {
         padding: 2rem 0;
     }
     
+    .prices-section {
+        padding: 2rem 0 3rem 0;
+    }
+    
     .calculator-form {
         margin: 0 0.5rem;
         padding: 1.5rem;
@@ -1478,7 +1487,7 @@ a:focus {
 /* Enhanced Mobile Table Responsiveness */
 @media (max-width: 768px) {
     .prices-section {
-        padding: 3rem 0;
+        padding: 3rem 0 4rem 0;
     }
     
     .table-container {
