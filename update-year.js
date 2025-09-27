@@ -18,7 +18,8 @@ const DRY_RUN = process.argv.includes('--dry-run');
 const FILES_TO_UPDATE = [
     'index.html',
     'kommuner/template.html',
-    'generate-pages.js'
+    'generate-pages.js',
+    'sitemap.xml'
 ];
 
 const DIRECTORIES_TO_UPDATE = [
@@ -142,6 +143,17 @@ function main() {
     
     // Update generate-pages.js specifically
     updateGeneratePagesScript();
+    
+    // Regenerate sitemap with new year
+    console.log('\n🔄 Regenerating sitemap with updated year...');
+    try {
+        const { execSync } = require('child_process');
+        execSync('node generate-sitemap.js', { stdio: 'pipe' });
+        console.log('✅ Sitemap regenerated successfully');
+        filesUpdated++;
+    } catch (error) {
+        console.log('⚠️  Could not regenerate sitemap:', error.message);
+    }
     
     console.log('\n' + '─'.repeat(50));
     console.log('📊 SUMMARY:');
