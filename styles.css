@@ -54,6 +54,22 @@ body {
     gap: 2rem;
 }
 
+.nav-list a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-list a:hover {
+    color: #0066CC;
+    background: rgba(0, 102, 204, 0.05);
+    transform: translateY(-1px);
+}
+
 .nav-link {
     text-decoration: none;
     color: #4a5568;

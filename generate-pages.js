@@ -197,16 +197,14 @@ const currentYear = new Date().getFullYear();
 municipalities.forEach(municipality => {
     let page = template
         .replace(/{{KOMMUNE_NAME}}/g, municipality.name)
+        .replace(/{{KOMMUNE_SLUG}}/g, municipality.slug)
         .replace(/{{YEAR}}/g, currentYear)
         .replace(/{{VUGGESTUE_PRICE}}/g, municipality.vuggestue.toLocaleString('da-DK'))
-        .replace(/{{BOERNHAVE_PRICE}}/g, municipality.boernehave.toLocaleString('da-DK'))
+        .replace(/{{BOERNEHAVE_PRICE}}/g, municipality.boernehave.toLocaleString('da-DK'))
         .replace(/{{SFO_PRICE}}/g, municipality.sfo.toLocaleString('da-DK'))
         .replace(/{{MADORDNING_PRICE}}/g, municipality.madordning.toLocaleString('da-DK'))
         .replace(/{{KILDE_URL}}/g, municipality.kilde)
-        .replace(/{{VUGGESTUE_PRICE}}/g, municipality.vuggestue.toLocaleString('da-DK'))
-        .replace(/{{BOERNHAVE_PRICE}}/g, municipality.boernehave.toLocaleString('da-DK'))
-        .replace(/{{SFO_PRICE}}/g, municipality.sfo.toLocaleString('da-DK'))
-        .replace(/{{MADORDNING_PRICE}}/g, municipality.madordning.toLocaleString('da-DK'));
+        .replace(/{{CURRENT_YEAR}}/g, currentYear);
 
     // Write page
     const outputPath = path.join(__dirname, 'kommuner', `${municipality.slug}.html`);
