@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Børnepasning - Sammenlign priser i Danmark 2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Børnepasning.dk</h1>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#calculator" class="nav-link">Beregner</a></li>
+                        <li><a href="#prices" class="nav-link">Priser pr. kommune</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-toggle" aria-label="Åbn menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Sammenlign børnepasningspriser i Danmark 2025</h1>
+                        <p class="hero-subtitle">Find den bedste pris for børnepasning i din kommune. Vi hjælper familier med at sammenligne omkostninger og finde den mest økonomiske løsning.</p>
+                        <button class="cta-button" onclick="scrollToCalculator()">Beregn pris nu</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator" class="calculator">
+            <div class="container">
+                <h2 class="section-title">Beregn din månedlige pris</h2>
+                <div id="loading-indicator" class="loading-indicator">
+                    <div class="loading-spinner"></div>
+                    <p>Indlæser prisdata...</p>
+                </div>
+                <div class="calculator-form">
+                    <form id="priceCalculator">
+                        <div class="form-group">
+                            <label for="kommune">Kommune</label>
+                            <select id="kommune" name="kommune" required>
+                                <option value="">Vælg kommune</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="barnets-alder">Barnets alder</label>
+                            <select id="barnets-alder" name="barnets-alder" required>
+                                <option value="">Vælg alder</option>
+                                <option value="vuggestue">Vuggestue (0-3 år)</option>
+                                <option value="boernehave">Børnehave (3-6 år)</option>
+                                <option value="sfo">SFO (6-10 år)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="madordning" name="madordning">
+                            <label for="madordning" id="madordning-label">Inkluder madordning</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="husstandsindkomst">Husstandsindkomst (DKK/år)</label>
+                            <input type="number" id="husstandsindkomst" name="husstandsindkomst" placeholder="fx. 400000" required>
+                        </div>
+
+                        <button type="submit" class="calculate-button">Beregn</button>
+                    </form>
+
+                    <div id="result" class="result-box hidden">
+                        <h3>Din månedlige pris</h3>
+                        <div class="price-display">
+                            <span id="calculated-price" class="price-amount">0</span>
+                            <span class="price-currency">DKK</span>
+                        </div>
+                        <p class="price-note">* Vejledende pris baseret på officielle data</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Municipality Price Table Section -->
+        <section id="prices" class="prices">
+            <div class="container">
+                <h2 class="section-title">Priser pr. kommune</h2>
+                <div class="table-container">
+                    <table class="prices-table">
+                        <thead>
+                            <tr>
+                                <th>Kommune</th>
+                                <th>Vuggestue</th>
+                                <th>Børnehave</th>
+                                <th>SFO</th>
+                                <th>Detaljer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be populated dynamically from JSON data -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section id="map-section" class="container map-section">
+            <h2 class="section-title">Find børnepasningsmuligheder i dit område</h2>
+            <div id="mapid"></div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2 class="section-title">Ofte stillede spørgsmål</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 class="faq-question">Hvordan beregnes prisen for børnepasning?</h3>
+                        <p class="faq-answer">Prisen afhænger af din husstandsindkomst, barnets alder og om du vælger madordning. Kommunen beregner en subsidieret pris baseret på disse faktorer.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Er priserne de samme i alle kommuner?</h3>
+                        <p class="faq-answer">Nej, priserne varierer mellem kommuner. Hver kommune fastsætter sine egne priser, men de følger nationale retningslinjer for beregning.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Kan jeg få hjælp til at ansøge om børnepasning?</h3>
+                        <p class="faq-answer">Ja, din kommune kan hjælpe dig med ansøgningen. Kontakt dem for at få vejledning om processen og de nødvendige dokumenter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="disclaimer">Data fra officielle kilder, vejledende priser</p>
+                <p class="copyright">© 2025 Børnepasning.dk | <a href="https://international.kk.dk" target="_blank" rel="noopener">International.kk.dk</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
