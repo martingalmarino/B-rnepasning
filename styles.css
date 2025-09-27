@@ -1352,6 +1352,9 @@ body {
     .table-container {
         overflow-x: auto;
         border-radius: 16px;
+        /* Smooth scrolling on mobile */
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
     }
     
     .prices-table {
@@ -1467,5 +1470,181 @@ a:focus {
     .map-placeholder {
         background: white;
         border: 2px solid #333;
+    }
+}
+
+/* Enhanced Mobile Table Responsiveness */
+@media (max-width: 768px) {
+    .prices-section {
+        padding: 3rem 0;
+    }
+    
+    .table-container {
+        margin: 0 -1rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .prices-table {
+        min-width: 600px;
+        font-size: 0.9rem;
+    }
+    
+    .prices-table th {
+        padding: 1rem 0.75rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+    
+    .prices-table td {
+        padding: 0.875rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .prices-table th:nth-child(2),
+    .prices-table th:nth-child(3),
+    .prices-table th:nth-child(4),
+    .prices-table th:nth-child(5) {
+        text-align: center;
+    }
+    
+    .prices-table td:nth-child(2),
+    .prices-table td:nth-child(3),
+    .prices-table td:nth-child(4) {
+        text-align: center;
+        font-weight: 600;
+        color: #667eea;
+    }
+    
+    .prices-table td:nth-child(5) {
+        text-align: center;
+    }
+    
+    .detail-link {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        border-radius: 6px;
+    }
+}
+
+/* Small Mobile Table Improvements */
+@media (max-width: 480px) {
+    .table-container {
+        margin: 0 -0.5rem;
+        border-radius: 8px;
+    }
+    
+    .prices-table {
+        min-width: 500px;
+        font-size: 0.8rem;
+    }
+    
+    .prices-table th {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .prices-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .detail-link {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    /* Make municipality names more prominent */
+    .prices-table td:first-child {
+        font-weight: 600;
+        color: #1a202c;
+    }
+    
+    /* Compact price display */
+    .prices-table td:nth-child(2),
+    .prices-table td:nth-child(3),
+    .prices-table td:nth-child(4) {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.3rem;
+    }
+}
+
+/* Extra Small Mobile Table */
+@media (max-width: 360px) {
+    .prices-table {
+        min-width: 450px;
+        font-size: 0.75rem;
+    }
+    
+    .prices-table th {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.7rem;
+    }
+    
+    .prices-table td {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.7rem;
+    }
+    
+    .detail-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.65rem;
+    }
+    
+    .prices-table td:nth-child(2),
+    .prices-table td:nth-child(3),
+    .prices-table td:nth-child(4) {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.25rem;
+    }
+}
+
+/* Table scroll indicator for mobile */
+@media (max-width: 768px) {
+    .table-container {
+        position: relative;
+    }
+    
+    .table-container::after {
+        content: "← Scroll to see more →";
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(102, 126, 234, 0.9);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        z-index: 10;
+        pointer-events: none;
+        opacity: 0.8;
+    }
+    
+    .table-container:hover::after {
+        opacity: 1;
+    }
+}
+
+/* Alternative card layout for very small screens */
+@media (max-width: 320px) {
+    .prices-table {
+        display: none;
+    }
+    
+    .table-container {
+        display: block;
+    }
+    
+    .table-container::before {
+        content: "For best experience, rotate your device or use a larger screen";
+        display: block;
+        text-align: center;
+        padding: 2rem;
+        background: rgba(102, 126, 234, 0.1);
+        border-radius: 12px;
+        color: #667eea;
+        font-weight: 600;
+        margin-bottom: 1rem;
     }
 }
