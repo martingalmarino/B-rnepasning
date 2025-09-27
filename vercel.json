@@ -7,8 +7,16 @@
       "destination": "/index.html"
     },
     {
-      "source": "/kommuner/:slug",
-      "destination": "/kommune.html?kommune=:slug"
+      "source": "/kommuner/koebenhavn",
+      "destination": "/kommuner/koebenhavn.html"
+    },
+    {
+      "source": "/kommuner/aarhus",
+      "destination": "/kommuner/aarhus.html"
+    },
+    {
+      "source": "/kommuner/odense",
+      "destination": "/kommuner/odense.html"
     }
   ],
   "headers": [
