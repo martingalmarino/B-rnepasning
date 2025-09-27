@@ -71,8 +71,25 @@
                         <select id="kommune">
                             <option value="">Vælg kommune</option>
                             <option value="København">København</option>
+                            <option value="Frederiksberg">Frederiksberg</option>
                             <option value="Aarhus">Aarhus</option>
                             <option value="Odense">Odense</option>
+                            <option value="Aalborg">Aalborg</option>
+                            <option value="Esbjerg">Esbjerg</option>
+                            <option value="Randers">Randers</option>
+                            <option value="Kolding">Kolding</option>
+                            <option value="Vejle">Vejle</option>
+                            <option value="Roskilde">Roskilde</option>
+                            <option value="Herning">Herning</option>
+                            <option value="Horsens">Horsens</option>
+                            <option value="Holstebro">Holstebro</option>
+                            <option value="Næstved">Næstved</option>
+                            <option value="Slagelse">Slagelse</option>
+                            <option value="Hjørring">Hjørring</option>
+                            <option value="Sønderborg">Sønderborg</option>
+                            <option value="Favrskov">Favrskov</option>
+                            <option value="Viborg">Viborg</option>
+                            <option value="Gladsaxe">Gladsaxe</option>
                         </select>
                     </div>
 
@@ -104,6 +121,28 @@
                             <span id="pris">0</span> DKK
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Municipality Prices Table Section -->
+        <section class="prices-section">
+            <div class="container">
+                <h2 class="section-title">Priser pr. kommune</h2>
+                <div class="table-container">
+                    <table class="prices-table">
+                        <thead>
+                            <tr>
+                                <th>Kommune</th>
+                                <th>Vuggestue</th>
+                                <th>Børnehave</th>
+                                <th>SFO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="priceTableBody">
+                            <!-- Table will be populated by JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -198,11 +237,28 @@
             const madordning = document.getElementById('madordning').checked;
             const indkomst = parseInt(document.getElementById('indkomst').value) || 0;
             
-            // Simple price data
+            // Complete price data for all 20 municipalities
             const priser = {
                 'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650 },
+                'Frederiksberg': { vuggestue: 3745, boernehave: 2034, sfo: 1750, madordning: 600 },
                 'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620 },
-                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600 }
+                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600 },
+                'Aalborg': { vuggestue: 3550, boernehave: 2250, sfo: 1550, madordning: 580 },
+                'Esbjerg': { vuggestue: 3480, boernehave: 2180, sfo: 1500, madordning: 580 },
+                'Randers': { vuggestue: 3400, boernehave: 2150, sfo: 1500, madordning: 570 },
+                'Kolding': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 570 },
+                'Vejle': { vuggestue: 3450, boernehave: 2180, sfo: 1500, madordning: 560 },
+                'Roskilde': { vuggestue: 4022, boernehave: 2600, sfo: 1800, madordning: 590 },
+                'Herning': { vuggestue: 3852, boernehave: 2300, sfo: 1600, madordning: 570 },
+                'Horsens': { vuggestue: 3480, boernehave: 2200, sfo: 1500, madordning: 560 },
+                'Holstebro': { vuggestue: 3400, boernehave: 2100, sfo: 1480, madordning: 550 },
+                'Næstved': { vuggestue: 3450, boernehave: 2150, sfo: 1500, madordning: 560 },
+                'Slagelse': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 560 },
+                'Hjørring': { vuggestue: 3400, boernehave: 2100, sfo: 1450, madordning: 540 },
+                'Sønderborg': { vuggestue: 3260, boernehave: 2100, sfo: 1480, madordning: 540 },
+                'Favrskov': { vuggestue: 3226, boernehave: 2080, sfo: 1450, madordning: 540 },
+                'Viborg': { vuggestue: 3380, boernehave: 2150, sfo: 1500, madordning: 540 },
+                'Gladsaxe': { vuggestue: 3600, boernehave: 2200, sfo: 1550, madordning: 560 }
             };
             
             if (!kommune || !alder || indkomst <= 0) {
@@ -240,10 +296,56 @@
             document.getElementById('resultat').style.display = 'block';
         }
         
+        // Function to populate the price table
+        function populatePriceTable() {
+            const priser = {
+                'København': { vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650 },
+                'Frederiksberg': { vuggestue: 3745, boernehave: 2034, sfo: 1750, madordning: 600 },
+                'Aarhus': { vuggestue: 3637, boernehave: 2288, sfo: 1600, madordning: 620 },
+                'Odense': { vuggestue: 3500, boernehave: 2150, sfo: 1500, madordning: 600 },
+                'Aalborg': { vuggestue: 3550, boernehave: 2250, sfo: 1550, madordning: 580 },
+                'Esbjerg': { vuggestue: 3480, boernehave: 2180, sfo: 1500, madordning: 580 },
+                'Randers': { vuggestue: 3400, boernehave: 2150, sfo: 1500, madordning: 570 },
+                'Kolding': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 570 },
+                'Vejle': { vuggestue: 3450, boernehave: 2180, sfo: 1500, madordning: 560 },
+                'Roskilde': { vuggestue: 4022, boernehave: 2600, sfo: 1800, madordning: 590 },
+                'Herning': { vuggestue: 3852, boernehave: 2300, sfo: 1600, madordning: 570 },
+                'Horsens': { vuggestue: 3480, boernehave: 2200, sfo: 1500, madordning: 560 },
+                'Holstebro': { vuggestue: 3400, boernehave: 2100, sfo: 1480, madordning: 550 },
+                'Næstved': { vuggestue: 3450, boernehave: 2150, sfo: 1500, madordning: 560 },
+                'Slagelse': { vuggestue: 3450, boernehave: 2200, sfo: 1500, madordning: 560 },
+                'Hjørring': { vuggestue: 3400, boernehave: 2100, sfo: 1450, madordning: 540 },
+                'Sønderborg': { vuggestue: 3260, boernehave: 2100, sfo: 1480, madordning: 540 },
+                'Favrskov': { vuggestue: 3226, boernehave: 2080, sfo: 1450, madordning: 540 },
+                'Viborg': { vuggestue: 3380, boernehave: 2150, sfo: 1500, madordning: 540 },
+                'Gladsaxe': { vuggestue: 3600, boernehave: 2200, sfo: 1550, madordning: 560 }
+            };
+            
+            const tbody = document.getElementById('priceTableBody');
+            tbody.innerHTML = '';
+            
+            Object.keys(priser).forEach(kommune => {
+                const row = document.createElement('tr');
+                const data = priser[kommune];
+                row.innerHTML = `
+                    <td>${kommune}</td>
+                    <td>${data.vuggestue.toLocaleString('da-DK')} DKK</td>
+                    <td>${data.boernehave.toLocaleString('da-DK')} DKK</td>
+                    <td>${data.sfo.toLocaleString('da-DK')} DKK</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
         // Scroll function
         function scrollToCalculator() {
             document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
         }
+        
+        // Initialize table when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populatePriceTable();
+        });
     </script>
 </body>
 </html>
