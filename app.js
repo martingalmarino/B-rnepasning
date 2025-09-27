@@ -41,11 +41,18 @@ function isRunningFromFile() {
     return window.location.protocol === 'file:';
 }
 
+// Check if running in development/local environment
+function isLocalDevelopment() {
+    return window.location.hostname === 'localhost' || 
+           window.location.hostname === '127.0.0.1' ||
+           window.location.protocol === 'file:';
+}
+
 // Function to load municipality data from JSON
 async function loadMunicipalityData() {
-    // Check if running from file:// protocol
+    // Only use fallback for file:// protocol, not for localhost or Vercel
     if (isRunningFromFile()) {
-        console.warn('Running from file:// protocol - CORS restrictions may apply');
+        console.warn('Running from file:// protocol - CORS restrictions apply');
         console.log('Using fallback data due to file:// protocol');
         
         municipalityData = fallbackData;
@@ -88,15 +95,21 @@ async function loadMunicipalityData() {
     } catch (error) {
         console.error('Error loading municipality data:', error);
         console.error('Error details:', error.message);
-        console.log('Using fallback data instead');
+        
+        // Only show warning for localhost, not for production (Vercel)
+        if (isLocalDevelopment()) {
+            console.log('Using fallback data for local development');
+            showDataLoadWarning();
+        } else {
+            console.error('Critical error in production - data loading failed');
+            // Show a more user-friendly error message for production
+            showProductionError();
+        }
         
         // Use fallback data
         municipalityData = fallbackData;
         isLoadingData = false;
         hideLoadingIndicator();
-        
-        // Show warning but continue with fallback data
-        showDataLoadWarning();
         
         // Initialize UI components with fallback data
         initializeCalculator();
@@ -131,6 +144,25 @@ function showDataLoadWarning() {
             </div>
         `;
         calculatorSection.insertBefore(warningDiv, calculatorSection.firstChild);
+    }
+}
+
+// Show production error message
+function showProductionError() {
+    const calculatorSection = document.getElementById('calculator');
+    if (calculatorSection) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.innerHTML = `
+            <div style="background: #fef2f2; border: 1px solid #f87171; border-radius: 12px; padding: 2rem; text-align: center; margin: 2rem 0;">
+                <h3 style="color: #dc2626; margin-bottom: 1rem;">❌ Fejl ved indlæsning af data</h3>
+                <p style="color: #991b1b; margin-bottom: 1rem;">Der opstod en fejl ved indlæsning af prisdata. Prøv at genindlæse siden.</p>
+                <button onclick="window.location.reload()" style="background: #dc2626; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                    Genindlæs side
+                </button>
+            </div>
+        `;
+        calculatorSection.insertBefore(errorDiv, calculatorSection.firstChild);
     }
 }
 
