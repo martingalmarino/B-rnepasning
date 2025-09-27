@@ -3,570 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Børnepasning i København 2025 – priser og beregner</title>
-    <meta name="description" content="Se de nyeste takster for børnepasning i København 2025. Beregn din pris med vores værktøj.">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background-color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(0, 102, 204, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            position: relative;
-        }
-
-        .logo {
-            text-decoration: none;
-        }
-
-        .logo-text {
-            background: linear-gradient(135deg, #0066CC 0%, #4DABF7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-list {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: #1a202c;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #667eea;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #1a202c;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid rgba(0, 102, 204, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-nav-list {
-            list-style: none;
-            padding: 1rem;
-            margin: 0;
-        }
-
-        .mobile-nav-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: #1a202c;
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .mobile-nav-link:hover {
-            background-color: rgba(102, 126, 234, 0.1);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white;
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(238, 90, 36, 0.4);
-        }
-
-        /* Section Styles */
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #1a202c;
-            text-align: center;
-            margin-bottom: 3rem;
-            line-height: 1.2;
-        }
-
-        /* Prices Section */
-        .prices {
-            padding: 6rem 0;
-            background: white;
-            position: relative;
-        }
-
-        .table-container {
-            background: rgba(255, 255, 255, 0.9);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            overflow: hidden;
-        }
-
-        .prices-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1.1rem;
-        }
-
-        .prices-table th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.2rem 1.5rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .prices-table td {
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            font-weight: 500;
-        }
-
-        .prices-table tr:hover {
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .source-info {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .source-info p {
-            margin: 0;
-            color: #4a5568;
-            font-size: 0.95rem;
-        }
-
-        .source-info a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .source-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Calculator Section */
-        .calculator {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            position: relative;
-        }
-
-        .calculator-form {
-            background: rgba(255, 255, 255, 0.9);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            color: #1a202c;
-            font-size: 1.1rem;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-group input[type="checkbox"] {
-            width: auto;
-            margin-right: 0.8rem;
-            transform: scale(1.2);
-        }
-
-        .calculate-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-            width: 100%;
-        }
-
-        .calculate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
-        }
-
-        .result-box {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            margin-top: 2rem;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            display: none;
-        }
-
-        .result-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .price-note {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 0;
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            color: white;
-            padding: 3rem 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .disclaimer {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        .copyright a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .copyright a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .nav-list {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            
-            .hero {
-                padding: 4rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .calculator-form {
-                padding: 2rem 1.5rem;
-                margin: 0 1rem;
-            }
-            
-            .table-container {
-                padding: 1.5rem;
-                margin: 0 1rem;
-            }
-            
-            .prices-table {
-                font-size: 0.95rem;
-            }
-            
-            .prices-table th,
-            .prices-table td {
-                padding: 1rem 0.75rem;
-            }
-            
-            .prices-table th:first-child,
-            .prices-table td:first-child {
-                min-width: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .calculator-form {
-                padding: 1.5rem;
-                margin: 0 0.5rem;
-            }
-            
-            .table-container {
-                padding: 1rem;
-                margin: 0 0.5rem;
-            }
-            
-            .prices-table {
-                font-size: 0.85rem;
-            }
-            
-            .prices-table th,
-            .prices-table td {
-                padding: 0.75rem 0.5rem;
-            }
-            
-            .price-amount {
-                font-size: 2.2rem;
-            }
-            
-            .footer {
-                padding: 2rem 0;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .calculator-form {
-                padding: 1rem;
-            }
-            
-            .table-container {
-                padding: 0.75rem;
-            }
-            
-            .prices-table {
-                font-size: 0.8rem;
-            }
-            
-            .prices-table th,
-            .prices-table td {
-                padding: 0.5rem 0.25rem;
-            }
-        }
-    </style>
+    <title>Børnepasningspriser København 2025 - Børnepasning.dk</title>
+    <meta name="description" content="Se priserne for børnepasning i København 2025. Beregn din månedlige pris med vores beregner og find detaljerede oplysninger om vuggestue, børnehave og SFO.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="/" class="logo">
-                    <span class="logo-text">Børnepasning.dk</span>
-                </a>
+                <div class="logo">
+                    <h1><a href="../index.html" style="text-decoration: none; color: inherit;">Børnepasning.dk</a></h1>
+                </div>
                 <nav class="nav">
                     <ul class="nav-list">
-                        <li><a href="/" class="nav-link">Beregner</a></li>
-                        <li><a href="/#prices" class="nav-link">Priser pr. kommune</a></li>
-                        <li><a href="/#faq" class="nav-link">FAQ</a></li>
+                        <li><a href="../index.html" class="nav-link">Forside</a></li>
+                        <li><a href="../index.html#calculator" class="nav-link">Beregner</a></li>
+                        <li><a href="../index.html#prices" class="nav-link">Alle kommuner</a></li>
+                        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
                     </ul>
-                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
                 </nav>
-                <div class="mobile-menu" id="mobile-menu">
-                    <ul class="mobile-nav-list">
-                        <li><a href="/" class="mobile-nav-link">Beregner</a></li>
-                        <li><a href="/#prices" class="mobile-nav-link">Priser pr. kommune</a></li>
-                        <li><a href="/#faq" class="mobile-nav-link">FAQ</a></li>
-                    </ul>
-                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -574,86 +36,114 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Børnepasning i København 2025</h1>
-            <p class="hero-subtitle">Se de nyeste takster og beregn din månedlige pris for børnepasning i København</p>
-            <a href="#calculator" class="cta-button">Beregn pris nu</a>
-        </div>
-    </section>
-
-    <!-- Prices Section -->
-    <section class="prices">
-        <div class="container">
-            <h2 class="section-title">Priser for børnepasning i København</h2>
-            
-            <div class="table-container">
-                <table class="prices-table">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Månedlig pris</th>
-                            <th>Madordning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Vuggestue (0-3 år)</td>
-                            <td>3.996 DKK</td>
-                            <td>650 DKK</td>
-                        </tr>
-                        <tr>
-                            <td>Børnehave (3-6 år)</td>
-                            <td>2.317 DKK</td>
-                            <td>650 DKK</td>
-                        </tr>
-                        <tr>
-                            <td>SFO (6-10 år)</td>
-                            <td>1.800 DKK</td>
-                            <td>650 DKK</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="source-info">
-                    <p>Data fra <a href="https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning" target="_blank" rel="noopener">Københavns Kommune</a> • Opdateret 2025</p>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Børnepasningspriser København 2025</h1>
+                    <p class="hero-subtitle">Find de aktuelle priser for børnepasning i København og beregn din månedlige udgift</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Calculator Section -->
-    <section class="calculator" id="calculator">
+    <section id="calculator" class="calculator">
         <div class="container">
-            <h2 class="section-title">Beregn din månedlige pris</h2>
-            
+            <h2 class="section-title">Beregn din månedlige pris i København</h2>
             <div class="calculator-form">
                 <div class="form-group">
-                    <label for="barnets-alder">Barnets alder</label>
-                    <select id="barnets-alder">
+                    <label for="kommune">Kommune</label>
+                    <select id="kommune">
+                        <option value="København" selected>København</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="alder">Barnets alder</label>
+                    <select id="alder">
                         <option value="">Vælg alder</option>
                         <option value="vuggestue">Vuggestue (0-3 år)</option>
                         <option value="boernehave">Børnehave (3-6 år)</option>
                         <option value="sfo">SFO (6-10 år)</option>
                     </select>
                 </div>
-                
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="madordning">
-                        Inkluder madordning (+650 DKK)
-                    </label>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="madordning">
+                    <label for="madordning">Inkluder madordning</label>
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="husstandsindkomst">Husstandsindkomst (DKK/år)</label>
-                    <input type="number" id="husstandsindkomst" placeholder="Indtast årlig indkomst">
+                    <label for="indkomst">Husstandsindkomst (DKK/år)</label>
+                    <input type="number" id="indkomst" placeholder="fx. 400000">
                 </div>
-                
-                <button class="calculate-button" onclick="calculatePrice()">Beregn</button>
-                
-                <div class="result-box" id="result-box">
+
+                <button onclick="beregnPris()" class="calculate-button">Beregn</button>
+
+                <div id="resultat" class="result-box" style="display: none;">
                     <h3>Din månedlige pris</h3>
-                    <div class="price-amount" id="price-amount">0 DKK</div>
-                    <p class="price-note">* Vejledende pris baseret på officielle data</p>
+                    <div class="price-display">
+                        <span id="pris">0</span> DKK
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Prices Section -->
+    <section class="prices-section">
+        <div class="container">
+            <h2 class="section-title">Priser i København</h2>
+            <div class="table-container">
+                <table class="prices-table">
+                    <thead>
+                        <tr>
+                            <th>Kommune</th>
+                            <th>Vuggestue</th>
+                            <th>Børnehave</th>
+                            <th>SFO</th>
+                            <th>Madordning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>København</td>
+                            <td>3.996 DKK</td>
+                            <td>2.317 DKK</td>
+                            <td>1.800 DKK</td>
+                            <td>650 DKK</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="source-info">
+                <p>Kilde: <a href="https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning" target="_blank" rel="noopener">https://www.kk.dk/borger/pasning-og-skole/priser-og-tilskud/priser-for-boernepasning</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Ofte stillede spørgsmål - København</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3 class="faq-question">Hvad koster børnepasning i København?</h3>
+                    <p class="faq-answer">Priserne i København er 3.996 DKK for vuggestue, 2.317 DKK for børnehave og 1.800 DKK for SFO. Madordning koster 650 DKK ekstra per måned.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Hvordan ansøger jeg om plads i København?</h3>
+                    <p class="faq-answer">Du kan ansøge om plads gennem København Kommunes hjemmeside eller ved at kontakte kommunens børne- og ungdomsforvaltning. Ansøgningen kan laves online eller på papir.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Hvilke tilskud kan jeg få i København?</h3>
+                    <p class="faq-answer">Tilskuddet afhænger af din husstandsindkomst. Familier med indkomst under 250.000 DKK får 40% tilskud, mens familier med indkomst under 350.000 DKK får 20% tilskud.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Hvornår skal jeg ansøge om plads?</h3>
+                    <p class="faq-answer">Det anbefales at ansøge så snart du ved, at du har brug for børnepasning. I København er der typisk ansøgningsfrister, så kontakt kommunen for aktuelle oplysninger.</p>
                 </div>
             </div>
         </div>
@@ -663,74 +153,60 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p class="disclaimer">
-                    Data fra officielle kilder, vejledende priser. Kontakt din kommune for præcise oplysninger.
-                </p>
-                <p class="copyright">
-                    © 2025 Børnepasning.dk | <a href="https://international.kk.dk" target="_blank" rel="noopener">International.kk.dk</a>
-                </p>
+                <div class="disclaimer">
+                    <p>Oplysningerne er vejledende og baseret på officielle kommunale data. Kontakt din kommune for de mest aktuelle priser og betingelser.</p>
+                </div>
+                <div class="copyright">
+                    <p class="copyright">© 2025 Børnepasning.dk | <a href="https://international.kk.dk" target="_blank" rel="noopener">International.kk.dk</a></p>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('active');
-        }
+        // Municipality data
+        const kommuneData = {
+            kommune: "København",
+            vuggestue: 3.996,
+            boernehave: 2.317,
+            sfo: 1.800,
+            madordning: 650
+        };
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        // Simple calculator function
+        function beregnPris() {
+            const kommune = document.getElementById('kommune').value;
+            const alder = document.getElementById('alder').value;
+            const madordning = document.getElementById('madordning').checked;
+            const indkomst = parseInt(document.getElementById('indkomst').value) || 0;
             
-            if (!mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-            }
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.remove('active');
-            });
-        });
-
-        function calculatePrice() {
-            const ageGroup = document.getElementById('barnets-alder').value;
-            const includeLunch = document.getElementById('madordning').checked;
-            const income = parseInt(document.getElementById('husstandsindkomst').value) || 0;
-            
-            if (!ageGroup) {
-                alert('Vælg venligst barnets alder');
+            if (!kommune || !alder || indkomst <= 0) {
+                alert('Udfyld alle felter korrekt.');
                 return;
             }
             
-            // Base prices for København
-            const basePrices = {
-                'vuggestue': 3996,
-                'boernehave': 2317,
-                'sfo': 1800
-            };
-            
-            const lunchPrice = 650;
-            let basePrice = basePrices[ageGroup];
-            
-            if (includeLunch) {
-                basePrice += lunchPrice;
+            let basePrice = kommuneData[alder];
+            if (!basePrice) {
+                alert('Alder ikke fundet.');
+                return;
             }
             
-            // Simple subsidy calculation (simplified)
+            // Add lunch if selected
+            if (madordning) {
+                basePrice += kommuneData.madordning;
+            }
+            
+            // Calculate subsidy
             let finalPrice = basePrice;
-            if (income > 0 && income < 500000) {
-                finalPrice = basePrice * 0.7; // 30% subsidy
-            } else if (income >= 500000 && income < 750000) {
-                finalPrice = basePrice * 0.85; // 15% subsidy
+            if (indkomst < 250000) {
+                finalPrice = basePrice * 0.6; // 40% subsidy
+            } else if (indkomst < 350000) {
+                finalPrice = basePrice * 0.8; // 20% subsidy
             }
             
-            // Display result
-            document.getElementById('price-amount').textContent = Math.round(finalPrice) + ' DKK';
-            document.getElementById('result-box').style.display = 'block';
+            // Show result
+            document.getElementById('pris').textContent = Math.round(finalPrice).toLocaleString('da-DK');
+            document.getElementById('resultat').style.display = 'block';
         }
     </script>
 </body>

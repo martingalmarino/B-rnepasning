@@ -321,9 +321,40 @@
             document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
         }
         
-        // Initialize table when page loads
+        // Function to populate municipality pills
+        function populateMunicipalityPills() {
+            const pillsContainer = document.getElementById('municipality-pills');
+            if (!pillsContainer) return;
+            
+            const municipalities = [
+                { name: 'København', slug: 'koebenhavn', avgPrice: 2704 },
+                { name: 'Aarhus', slug: 'aarhus', avgPrice: 2481 },
+                { name: 'Odense', slug: 'odense', avgPrice: 2383 },
+                { name: 'Aalborg', slug: 'aalborg', avgPrice: 2453 },
+                { name: 'Frederiksberg', slug: 'frederiksberg', avgPrice: 2515 }
+            ];
+            
+            pillsContainer.innerHTML = '';
+            
+            municipalities.forEach(municipality => {
+                const pill = document.createElement('a');
+                pill.href = `kommuner/${municipality.slug}.html`;
+                pill.className = 'municipality-pill';
+                pill.innerHTML = `
+                    <div class="pill-content">
+                        <h3 class="pill-name">${municipality.name}</h3>
+                        <p class="pill-price">Gennemsnit: ${municipality.avgPrice.toLocaleString('da-DK')} DKK/måned</p>
+                        <span class="pill-arrow">→</span>
+                    </div>
+                `;
+                pillsContainer.appendChild(pill);
+            });
+        }
+        
+        // Initialize table and pills when page loads
         document.addEventListener('DOMContentLoaded', function() {
             populatePriceTable();
+            populateMunicipalityPills();
         });
     </script>
 </body>
