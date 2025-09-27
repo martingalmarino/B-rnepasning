@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Børnepasning i Aalborg 2025 – priser og beregner</title>
-    <meta name="description" content="Se priserne for børnepasning i Aalborg 2025. Beregn din månedlige pris med vores beregner og find detaljerede oplysninger om vuggestue, børnehave og SFO.">
+    <title>Børnepasning i Gladsaxe 2025 – priser og beregner</title>
+    <meta name="description" content="Se priserne for børnepasning i Gladsaxe 2025. Beregn din månedlige pris med vores beregner og find detaljerede oplysninger om vuggestue, børnehave og SFO.">
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
@@ -38,8 +38,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">Børnepasningspriser Aalborg 2025</h1>
-                    <p class="hero-subtitle">Find de aktuelle priser for børnepasning i Aalborg og beregn din månedlige udgift</p>
+                    <h1 class="hero-title">Børnepasningspriser Gladsaxe 2025</h1>
+                    <p class="hero-subtitle">Find de aktuelle priser for børnepasning i Gladsaxe og beregn din månedlige udgift</p>
                     <button onclick="scrollToCalculator()" class="cta-button">Beregn pris nu</button>
                 </div>
             </div>
@@ -49,12 +49,12 @@
     <!-- Calculator Section -->
     <section id="calculator" class="calculator">
         <div class="container">
-            <h2 class="section-title">Beregn din månedlige pris i Aalborg</h2>
+            <h2 class="section-title">Beregn din månedlige pris i Gladsaxe</h2>
             <div class="calculator-form">
                 <div class="form-group">
                     <label for="kommune">Kommune</label>
                     <select id="kommune">
-                        <option value="Aalborg" selected>Aalborg</option>
+                        <option value="Gladsaxe" selected>Gladsaxe</option>
                     </select>
                 </div>
 
@@ -93,7 +93,7 @@
     <!-- Local Prices Section -->
     <section class="prices-section">
         <div class="container">
-            <h2 class="section-title">Priser i Aalborg</h2>
+            <h2 class="section-title">Priser i Gladsaxe</h2>
             <div class="table-container">
                 <table class="prices-table">
                     <thead>
@@ -107,17 +107,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Aalborg</td>
-                            <td>3.550 DKK</td>
-                            <td>2.250 DKK</td>
+                            <td>Gladsaxe</td>
+                            <td>3.600 DKK</td>
+                            <td>{{BOERNHAVE_PRICE}} DKK</td>
                             <td>1.550 DKK</td>
-                            <td>580 DKK</td>
+                            <td>560 DKK</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="source-info">
-                <p>Kilde: <a href="https://www.aalborg.dk/mit-liv/mit-barn/boernepasning/priser-og-vilkaar-for-dagtilbud-og-dus" target="_blank" rel="noopener" class="source-link">Se officielle priser på Aalborg Kommunes hjemmeside</a></p>
+                <p>Kilde: <a href="https://gladsaxe.dk/borger/boern-og-familie/boern-og-oekonomi/institutionstakster" target="_blank" rel="noopener" class="source-link">Se officielle priser på Gladsaxe Kommunes hjemmeside</a></p>
             </div>
         </div>
     </section>
@@ -125,26 +125,26 @@
     <!-- Local FAQ Section -->
     <section class="faq">
         <div class="container">
-            <h2 class="section-title">Ofte stillede spørgsmål - Aalborg</h2>
+            <h2 class="section-title">Ofte stillede spørgsmål - Gladsaxe</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvad koster børnepasning i Aalborg?</h3>
-                    <p class="faq-answer">Priserne i Aalborg er 3.550 DKK for vuggestue, 2.250 DKK for børnehave og 1.550 DKK for SFO. Madordning koster 580 DKK ekstra per måned.</p>
+                    <h3 class="faq-question">Hvad koster børnepasning i Gladsaxe?</h3>
+                    <p class="faq-answer">Priserne i Gladsaxe er 3.600 DKK for vuggestue, {{BOERNHAVE_PRICE}} DKK for børnehave og 1.550 DKK for SFO. Madordning koster 560 DKK ekstra per måned.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvordan ansøger jeg om plads i Aalborg?</h3>
-                    <p class="faq-answer">Du kan ansøge om plads gennem Aalborg Kommunes hjemmeside eller ved at kontakte kommunens børne- og ungdomsforvaltning. Ansøgningen kan laves online eller på papir.</p>
+                    <h3 class="faq-question">Hvordan ansøger jeg om plads i Gladsaxe?</h3>
+                    <p class="faq-answer">Du kan ansøge om plads gennem Gladsaxe Kommunes hjemmeside eller ved at kontakte kommunens børne- og ungdomsforvaltning. Ansøgningen kan laves online eller på papir.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvilke tilskud kan jeg få i Aalborg?</h3>
+                    <h3 class="faq-question">Hvilke tilskud kan jeg få i Gladsaxe?</h3>
                     <p class="faq-answer">Tilskuddet afhænger af din husstandsindkomst. Familier med indkomst under 250.000 DKK får 40% tilskud, mens familier med indkomst under 350.000 DKK får 20% tilskud.</p>
                 </div>
                 
                 <div class="faq-item">
                     <h3 class="faq-question">Hvornår skal jeg ansøge om plads?</h3>
-                    <p class="faq-answer">Det anbefales at ansøge så snart du ved, at du har brug for børnepasning. I Aalborg er der typisk ansøgningsfrister, så kontakt kommunen for aktuelle oplysninger.</p>
+                    <p class="faq-answer">Det anbefales at ansøge så snart du ved, at du har brug for børnepasning. I Gladsaxe er der typisk ansøgningsfrister, så kontakt kommunen for aktuelle oplysninger.</p>
                 </div>
             </div>
         </div>
@@ -167,11 +167,11 @@
     <script>
         // Municipality data
         const kommuneData = {
-            kommune: "Aalborg",
-            vuggestue: 3.550,
-            boernehave: 2.250,
+            kommune: "Gladsaxe",
+            vuggestue: 3.600,
+            boernehave: {{BOERNHAVE_PRICE}},
             sfo: 1.550,
-            madordning: 580
+            madordning: 560
         };
 
         // Simple calculator function

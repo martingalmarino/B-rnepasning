@@ -109,7 +109,7 @@
                         <tr>
                             <td>Herning</td>
                             <td>3.852 DKK</td>
-                            <td>2.300 DKK</td>
+                            <td>{{BOERNHAVE_PRICE}} DKK</td>
                             <td>1.600 DKK</td>
                             <td>570 DKK</td>
                         </tr>
@@ -129,7 +129,7 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <h3 class="faq-question">Hvad koster børnepasning i Herning?</h3>
-                    <p class="faq-answer">Priserne i Herning er 3.852 DKK for vuggestue, 2.300 DKK for børnehave og 1.600 DKK for SFO. Madordning koster 570 DKK ekstra per måned.</p>
+                    <p class="faq-answer">Priserne i Herning er 3.852 DKK for vuggestue, {{BOERNHAVE_PRICE}} DKK for børnehave og 1.600 DKK for SFO. Madordning koster 570 DKK ekstra per måned.</p>
                 </div>
                 
                 <div class="faq-item">
@@ -169,7 +169,7 @@
         const kommuneData = {
             kommune: "Herning",
             vuggestue: 3.852,
-            boernehave: 2.300,
+            boernehave: {{BOERNHAVE_PRICE}},
             sfo: 1.600,
             madordning: 570
         };

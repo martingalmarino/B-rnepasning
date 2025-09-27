@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Børnepasning i Hjørring 2025 – priser og beregner</title>
-    <meta name="description" content="Se priserne for børnepasning i Hjørring 2025. Beregn din månedlige pris med vores beregner og find detaljerede oplysninger om vuggestue, børnehave og SFO.">
+    <title>Børnepasning i Horsens 2025 – priser og beregner</title>
+    <meta name="description" content="Se priserne for børnepasning i Horsens 2025. Beregn din månedlige pris med vores beregner og find detaljerede oplysninger om vuggestue, børnehave og SFO.">
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
@@ -38,8 +38,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">Børnepasningspriser Hjørring 2025</h1>
-                    <p class="hero-subtitle">Find de aktuelle priser for børnepasning i Hjørring og beregn din månedlige udgift</p>
+                    <h1 class="hero-title">Børnepasningspriser Horsens 2025</h1>
+                    <p class="hero-subtitle">Find de aktuelle priser for børnepasning i Horsens og beregn din månedlige udgift</p>
                     <button onclick="scrollToCalculator()" class="cta-button">Beregn pris nu</button>
                 </div>
             </div>
@@ -49,12 +49,12 @@
     <!-- Calculator Section -->
     <section id="calculator" class="calculator">
         <div class="container">
-            <h2 class="section-title">Beregn din månedlige pris i Hjørring</h2>
+            <h2 class="section-title">Beregn din månedlige pris i Horsens</h2>
             <div class="calculator-form">
                 <div class="form-group">
                     <label for="kommune">Kommune</label>
                     <select id="kommune">
-                        <option value="Hjørring" selected>Hjørring</option>
+                        <option value="Horsens" selected>Horsens</option>
                     </select>
                 </div>
 
@@ -93,7 +93,7 @@
     <!-- Local Prices Section -->
     <section class="prices-section">
         <div class="container">
-            <h2 class="section-title">Priser i Hjørring</h2>
+            <h2 class="section-title">Priser i Horsens</h2>
             <div class="table-container">
                 <table class="prices-table">
                     <thead>
@@ -107,17 +107,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Hjørring</td>
-                            <td>3.400 DKK</td>
-                            <td>2.100 DKK</td>
-                            <td>1.450 DKK</td>
-                            <td>540 DKK</td>
+                            <td>Horsens</td>
+                            <td>3.480 DKK</td>
+                            <td>{{BOERNHAVE_PRICE}} DKK</td>
+                            <td>1.500 DKK</td>
+                            <td>560 DKK</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="source-info">
-                <p>Kilde: <a href="https://hjoerring.dk/borger/boern-unge-og-familie/pasningsmuligheder/kommunale-dagtilbud-0-6-aar/priser" target="_blank" rel="noopener" class="source-link">Se officielle priser på Hjørring Kommunes hjemmeside</a></p>
+                <p>Kilde: <a href="https://horsens.dk/familie/oekonomiogstoette/taksterdagtilbudogsfo" target="_blank" rel="noopener" class="source-link">Se officielle priser på Horsens Kommunes hjemmeside</a></p>
             </div>
         </div>
     </section>
@@ -125,26 +125,26 @@
     <!-- Local FAQ Section -->
     <section class="faq">
         <div class="container">
-            <h2 class="section-title">Ofte stillede spørgsmål - Hjørring</h2>
+            <h2 class="section-title">Ofte stillede spørgsmål - Horsens</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvad koster børnepasning i Hjørring?</h3>
-                    <p class="faq-answer">Priserne i Hjørring er 3.400 DKK for vuggestue, 2.100 DKK for børnehave og 1.450 DKK for SFO. Madordning koster 540 DKK ekstra per måned.</p>
+                    <h3 class="faq-question">Hvad koster børnepasning i Horsens?</h3>
+                    <p class="faq-answer">Priserne i Horsens er 3.480 DKK for vuggestue, {{BOERNHAVE_PRICE}} DKK for børnehave og 1.500 DKK for SFO. Madordning koster 560 DKK ekstra per måned.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvordan ansøger jeg om plads i Hjørring?</h3>
-                    <p class="faq-answer">Du kan ansøge om plads gennem Hjørring Kommunes hjemmeside eller ved at kontakte kommunens børne- og ungdomsforvaltning. Ansøgningen kan laves online eller på papir.</p>
+                    <h3 class="faq-question">Hvordan ansøger jeg om plads i Horsens?</h3>
+                    <p class="faq-answer">Du kan ansøge om plads gennem Horsens Kommunes hjemmeside eller ved at kontakte kommunens børne- og ungdomsforvaltning. Ansøgningen kan laves online eller på papir.</p>
                 </div>
                 
                 <div class="faq-item">
-                    <h3 class="faq-question">Hvilke tilskud kan jeg få i Hjørring?</h3>
+                    <h3 class="faq-question">Hvilke tilskud kan jeg få i Horsens?</h3>
                     <p class="faq-answer">Tilskuddet afhænger af din husstandsindkomst. Familier med indkomst under 250.000 DKK får 40% tilskud, mens familier med indkomst under 350.000 DKK får 20% tilskud.</p>
                 </div>
                 
                 <div class="faq-item">
                     <h3 class="faq-question">Hvornår skal jeg ansøge om plads?</h3>
-                    <p class="faq-answer">Det anbefales at ansøge så snart du ved, at du har brug for børnepasning. I Hjørring er der typisk ansøgningsfrister, så kontakt kommunen for aktuelle oplysninger.</p>
+                    <p class="faq-answer">Det anbefales at ansøge så snart du ved, at du har brug for børnepasning. I Horsens er der typisk ansøgningsfrister, så kontakt kommunen for aktuelle oplysninger.</p>
                 </div>
             </div>
         </div>
@@ -167,11 +167,11 @@
     <script>
         // Municipality data
         const kommuneData = {
-            kommune: "Hjørring",
-            vuggestue: 3.400,
-            boernehave: 2.100,
-            sfo: 1.450,
-            madordning: 540
+            kommune: "Horsens",
+            vuggestue: 3.480,
+            boernehave: {{BOERNHAVE_PRICE}},
+            sfo: 1.500,
+            madordning: 560
         };
 
         // Simple calculator function
