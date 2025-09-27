@@ -202,15 +202,20 @@
 
         // Load municipality data from JSON
         async function loadMunicipalityData() {
+            console.log('Loading municipality data...');
             try {
                 const response = await fetch('data/priser2025.json');
+                console.log('Response status:', response.status);
                 municipalityData = await response.json();
+                console.log('Municipality data loaded:', municipalityData.length, 'municipalities');
+                console.log('First municipality:', municipalityData[0]);
                 isLoadingData = false;
                 hideLoadingIndicator();
                 initializeCalculator();
                 initializePriceTable();
             } catch (error) {
                 console.error('Error loading data:', error);
+                console.log('Using fallback data');
                 // Fallback data
                 municipalityData = [
                     { kommune: "København", vuggestue: 3996, boernehave: 2317, sfo: 1800, madordning: 650, kilde: "https://www.kk.dk" },
@@ -269,8 +274,12 @@
 
         // Calculate price
         function calculatePrice() {
+            console.log('calculatePrice called');
             const form = document.getElementById('calculator-form');
-            if (!form) return;
+            if (!form) {
+                console.log('Form not found');
+                return;
+            }
             
             const formData = new FormData(form);
             const kommune = formData.get('kommune');
@@ -278,12 +287,16 @@
             const madordning = formData.get('madordning') === 'on';
             const husstandsindkomst = parseInt(formData.get('husstandsindkomst')) || 0;
             
+            console.log('Form data:', { kommune, alder, madordning, husstandsindkomst });
+            
             if (!kommune || !alder || husstandsindkomst <= 0) {
                 alert('Udfyld venligst alle felter korrekt.');
                 return;
             }
             
             const municipalityInfo = municipalityData.find(m => m.kommune === kommune);
+            console.log('Municipality info:', municipalityInfo);
+            
             if (!municipalityInfo) {
                 alert('Kommune ikke fundet.');
                 return;
@@ -291,6 +304,8 @@
             
             const baseRate = municipalityInfo[alder] || 0;
             const lunchCost = madordning ? (municipalityInfo.madordning || 0) : 0;
+            
+            console.log('Base rate:', baseRate, 'Lunch cost:', lunchCost);
             
             // Calculate subsidy based on income
             let subsidyFactor = 1;
@@ -303,16 +318,29 @@
             }
             
             const finalPrice = Math.round((baseRate + lunchCost) * subsidyFactor);
+            console.log('Final price:', finalPrice);
             
             // Display result
-            document.getElementById('calculated-price').textContent = `${finalPrice.toLocaleString('da-DK')} DKK`;
-            document.getElementById('result').style.display = 'block';
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const resultElement = document.getElementById('calculated-price');
+            const resultBox = document.getElementById('result');
+            
+            console.log('Result element:', resultElement, 'Result box:', resultBox);
+            
+            if (resultElement && resultBox) {
+                resultElement.textContent = `${finalPrice.toLocaleString('da-DK')} DKK`;
+                resultBox.style.display = 'block';
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                console.log('Result displayed successfully');
+            } else {
+                console.log('Result elements not found');
+            }
         }
 
         // Handle form submission
         function handleFormSubmit(e) {
+            console.log('handleFormSubmit called');
             e.preventDefault();
+            console.log('isLoadingData:', isLoadingData);
             if (isLoadingData) {
                 alert('Data indlæses stadig. Prøv igen om et øjeblik.');
                 return;
